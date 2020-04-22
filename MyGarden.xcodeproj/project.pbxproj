@@ -7,23 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DF0CDAED24507B8300B5AE2A /* MainGardenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CDAEC24507B8300B5AE2A /* MainGardenController.swift */; };
+		DF0CDAF024507EA700B5AE2A /* GardenCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CDAEF24507EA700B5AE2A /* GardenCollectionCell.swift */; };
+		DF12D99524508E01008DAC98 /* GardenCollectionFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF12D99424508E01008DAC98 /* GardenCollectionFlowLayout.swift */; };
 		DF3F8FB72446D2EA003FD2E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3F8FB62446D2EA003FD2E6 /* AppDelegate.swift */; };
 		DF3F8FB92446D2EA003FD2E6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3F8FB82446D2EA003FD2E6 /* SceneDelegate.swift */; };
-		DF3F8FBB2446D2EA003FD2E6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3F8FBA2446D2EA003FD2E6 /* ViewController.swift */; };
-		DF3F8FBE2446D2EA003FD2E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF3F8FBC2446D2EA003FD2E6 /* Main.storyboard */; };
 		DF3F8FC02446D2ED003FD2E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF3F8FBF2446D2ED003FD2E6 /* Assets.xcassets */; };
 		DF3F8FC32446D2ED003FD2E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF3F8FC12446D2ED003FD2E6 /* LaunchScreen.storyboard */; };
+		DFC56569244EF3370048F1EA /* MainGarden.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFC56568244EF3370048F1EA /* MainGarden.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DF0CDAEC24507B8300B5AE2A /* MainGardenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGardenController.swift; sourceTree = "<group>"; };
+		DF0CDAEF24507EA700B5AE2A /* GardenCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenCollectionCell.swift; sourceTree = "<group>"; };
+		DF12D99424508E01008DAC98 /* GardenCollectionFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenCollectionFlowLayout.swift; sourceTree = "<group>"; };
 		DF3F8FB32446D2EA003FD2E6 /* MyGarden.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyGarden.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF3F8FB62446D2EA003FD2E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DF3F8FB82446D2EA003FD2E6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		DF3F8FBA2446D2EA003FD2E6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		DF3F8FBD2446D2EA003FD2E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DF3F8FBF2446D2ED003FD2E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DF3F8FC22446D2ED003FD2E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DF3F8FC42446D2ED003FD2E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DFC56568244EF3370048F1EA /* MainGarden.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainGarden.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +41,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DF0CDAEE24507E4D00B5AE2A /* MainGardenControllers */ = {
+			isa = PBXGroup;
+			children = (
+				DF12D99624508E0B008DAC98 /* FlowLayouts */,
+				DF12D99724508E2E008DAC98 /* CollectionCells */,
+				DF0CDAEC24507B8300B5AE2A /* MainGardenController.swift */,
+			);
+			path = MainGardenControllers;
+			sourceTree = "<group>";
+		};
+		DF12D99624508E0B008DAC98 /* FlowLayouts */ = {
+			isa = PBXGroup;
+			children = (
+				DF12D99424508E01008DAC98 /* GardenCollectionFlowLayout.swift */,
+			);
+			path = FlowLayouts;
+			sourceTree = "<group>";
+		};
+		DF12D99724508E2E008DAC98 /* CollectionCells */ = {
+			isa = PBXGroup;
+			children = (
+				DF0CDAEF24507EA700B5AE2A /* GardenCollectionCell.swift */,
+			);
+			path = CollectionCells;
+			sourceTree = "<group>";
+		};
 		DF3F8FAA2446D2EA003FD2E6 = {
 			isa = PBXGroup;
 			children = (
@@ -58,8 +88,8 @@
 			children = (
 				DF3F8FB62446D2EA003FD2E6 /* AppDelegate.swift */,
 				DF3F8FB82446D2EA003FD2E6 /* SceneDelegate.swift */,
-				DF3F8FBA2446D2EA003FD2E6 /* ViewController.swift */,
-				DF3F8FBC2446D2EA003FD2E6 /* Main.storyboard */,
+				DF0CDAEE24507E4D00B5AE2A /* MainGardenControllers */,
+				DFC56568244EF3370048F1EA /* MainGarden.storyboard */,
 				DF3F8FBF2446D2ED003FD2E6 /* Assets.xcassets */,
 				DF3F8FC12446D2ED003FD2E6 /* LaunchScreen.storyboard */,
 				DF3F8FC42446D2ED003FD2E6 /* Info.plist */,
@@ -127,7 +157,7 @@
 			files = (
 				DF3F8FC32446D2ED003FD2E6 /* LaunchScreen.storyboard in Resources */,
 				DF3F8FC02446D2ED003FD2E6 /* Assets.xcassets in Resources */,
-				DF3F8FBE2446D2EA003FD2E6 /* Main.storyboard in Resources */,
+				DFC56569244EF3370048F1EA /* MainGarden.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +168,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DF3F8FBB2446D2EA003FD2E6 /* ViewController.swift in Sources */,
 				DF3F8FB72446D2EA003FD2E6 /* AppDelegate.swift in Sources */,
+				DF12D99524508E01008DAC98 /* GardenCollectionFlowLayout.swift in Sources */,
 				DF3F8FB92446D2EA003FD2E6 /* SceneDelegate.swift in Sources */,
+				DF0CDAED24507B8300B5AE2A /* MainGardenController.swift in Sources */,
+				DF0CDAF024507EA700B5AE2A /* GardenCollectionCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		DF3F8FBC2446D2EA003FD2E6 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DF3F8FBD2446D2EA003FD2E6 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		DF3F8FC12446D2ED003FD2E6 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -287,6 +311,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LN4WYZ2U7J;
 				INFOPLIST_FILE = MyGarden/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -305,6 +330,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LN4WYZ2U7J;
 				INFOPLIST_FILE = MyGarden/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="y5B-8V-B0X">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="n3e-Uv-ZeE">
+            <objects>
+                <navigationController id="y5B-8V-B0X" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="roV-c6-WGL">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="n43-So-VYb" kind="relationship" relationship="rootViewController" id="lhR-bt-mcp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LsC-LM-qLR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-917" y="94"/>
+        </scene>
+        <!--Water Today-->
+        <scene sceneID="tho-UG-6Oy">
+            <objects>
+                <viewController id="n43-So-VYb" customClass="MainGardenController" customModule="MyGarden" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PIU-fs-DCS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3Qx-on-Tlc">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewLayout key="collectionViewLayout" id="c2n-wf-1xR" customClass="GardenCollectionFlowLayout" customModule="MyGarden" customModuleProvider="target"/>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="gardenCollectionCellReuseId" id="WCu-8Y-kAf" customClass="GardenCollectionCell" customModule="MyGarden" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="170" height="200"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="yAd-Yh-3kc">
+                                            <rect key="frame" x="0.0" y="0.0" width="170" height="200"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plant" translatesAutoresizingMaskIntoConstraints="NO" id="BMo-CA-ige">
+                                                    <rect key="frame" x="0.0" y="0.0" width="170" height="200"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name plant" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BM8-34-LUS">
+                                                    <rect key="frame" x="16" y="160" width="138" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="BMo-CA-ige" firstAttribute="leading" secondItem="yAd-Yh-3kc" secondAttribute="leading" id="WgH-d4-W7n"/>
+                                                <constraint firstAttribute="trailing" secondItem="BM8-34-LUS" secondAttribute="trailing" constant="16" id="bdJ-eL-eE1"/>
+                                                <constraint firstAttribute="bottom" secondItem="BMo-CA-ige" secondAttribute="bottom" id="ipz-JU-CBX"/>
+                                                <constraint firstAttribute="trailing" secondItem="BMo-CA-ige" secondAttribute="trailing" id="kpD-zB-eH2"/>
+                                                <constraint firstItem="BMo-CA-ige" firstAttribute="top" secondItem="yAd-Yh-3kc" secondAttribute="top" id="mbl-hJ-PpI"/>
+                                                <constraint firstItem="BM8-34-LUS" firstAttribute="leading" secondItem="yAd-Yh-3kc" secondAttribute="leading" constant="16" id="tVN-6M-IBC"/>
+                                                <constraint firstAttribute="bottom" secondItem="BM8-34-LUS" secondAttribute="bottom" constant="16" id="xay-yK-7L5"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="170" height="200"/>
+                                        <connections>
+                                            <outlet property="plantImageView" destination="BMo-CA-ige" id="8Mq-aM-EkA"/>
+                                            <outlet property="plantNameLabel" destination="BM8-34-LUS" id="gXw-6F-6Gx"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="3Qx-on-Tlc" firstAttribute="top" secondItem="9vU-p1-5fY" secondAttribute="top" id="7WA-v5-0c6"/>
+                            <constraint firstItem="3Qx-on-Tlc" firstAttribute="leading" secondItem="9vU-p1-5fY" secondAttribute="leading" id="Ecd-1f-SrA"/>
+                            <constraint firstItem="9vU-p1-5fY" firstAttribute="bottom" secondItem="3Qx-on-Tlc" secondAttribute="bottom" id="R49-HV-t8X"/>
+                            <constraint firstItem="9vU-p1-5fY" firstAttribute="trailing" secondItem="3Qx-on-Tlc" secondAttribute="trailing" id="Wrh-ho-SMc"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9vU-p1-5fY"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Water Today" largeTitleDisplayMode="always" id="WzV-Ve-h3H">
+                        <barButtonItem key="backBarButtonItem" title=" " id="6Q5-LW-Zyo"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="gardenCollectionView" destination="3Qx-on-Tlc" id="rJH-eL-UCq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hsB-cU-VJM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="40.579710144927539" y="93.75"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="plant" width="600" height="220"/>
+    </resources>
+</document>
