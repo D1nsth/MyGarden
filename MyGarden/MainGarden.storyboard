@@ -70,6 +70,7 @@
                                         <connections>
                                             <outlet property="plantImageView" destination="BMo-CA-ige" id="8Mq-aM-EkA"/>
                                             <outlet property="plantNameLabel" destination="BM8-34-LUS" id="gXw-6F-6Gx"/>
+                                            <segue destination="6zN-8U-EHJ" kind="show" id="Izu-NI-gek"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -94,6 +95,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hsB-cU-VJM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="40.579710144927539" y="93.75"/>
+        </scene>
+        <!--Name plant-->
+        <scene sceneID="acY-z8-Xfb">
+            <objects>
+                <viewController id="6zN-8U-EHJ" customClass="PlantDetailsViewController" customModule="MyGarden" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="25S-rs-gFm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2kW-fq-0WY">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewLayout key="collectionViewLayout" id="lXC-eO-8Nh" customClass="PlantDetailsHeaderLayout" customModule="MyGarden" customModuleProvider="target"/>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="2kW-fq-0WY" firstAttribute="leading" secondItem="4i5-5F-fM2" secondAttribute="leading" id="03O-dY-4Tw"/>
+                            <constraint firstItem="4i5-5F-fM2" firstAttribute="bottom" secondItem="2kW-fq-0WY" secondAttribute="bottom" id="K3x-0u-oAi"/>
+                            <constraint firstItem="2kW-fq-0WY" firstAttribute="top" secondItem="25S-rs-gFm" secondAttribute="top" id="Owq-hS-YII"/>
+                            <constraint firstItem="4i5-5F-fM2" firstAttribute="trailing" secondItem="2kW-fq-0WY" secondAttribute="trailing" id="nBj-Jd-PON"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="4i5-5F-fM2"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Name plant" largeTitleDisplayMode="never" id="8Dc-vR-aUp">
+                        <barButtonItem key="backBarButtonItem" title=" " id="8fl-wR-c0J"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="2kW-fq-0WY" id="nZO-K7-vpT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kT7-AK-oLd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1088" y="94"/>
         </scene>
     </scenes>
     <resources>
