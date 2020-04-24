@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--Custom Navigation Controller-->
         <scene sceneID="n3e-Uv-ZeE">
             <objects>
-                <navigationController id="y5B-8V-B0X" sceneMemberID="viewController">
+                <navigationController id="y5B-8V-B0X" customClass="CustomNavigationController" customModule="MyGarden" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="roV-c6-WGL">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -183,7 +183,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2kW-fq-0WY">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewLayout key="collectionViewLayout" id="lXC-eO-8Nh" customClass="PlantDetailsHeaderLayout" customModule="MyGarden" customModuleProvider="target"/>
                                 <cells>
@@ -225,13 +225,33 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qQZ-Lq-T71">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="88"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name plant" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o5E-sS-Mru">
+                                        <rect key="frame" x="160.5" y="56" width="93.5" height="21"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="o5E-sS-Mru" firstAttribute="centerX" secondItem="qQZ-Lq-T71" secondAttribute="centerX" id="5cr-VM-tX5"/>
+                                    <constraint firstAttribute="bottom" secondItem="o5E-sS-Mru" secondAttribute="bottom" constant="11" id="kcm-VQ-3FH"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="2kW-fq-0WY" firstAttribute="leading" secondItem="4i5-5F-fM2" secondAttribute="leading" id="03O-dY-4Tw"/>
-                            <constraint firstItem="4i5-5F-fM2" firstAttribute="bottom" secondItem="2kW-fq-0WY" secondAttribute="bottom" id="K3x-0u-oAi"/>
+                            <constraint firstItem="4i5-5F-fM2" firstAttribute="top" secondItem="qQZ-Lq-T71" secondAttribute="bottom" id="4P9-qT-zcY"/>
+                            <constraint firstAttribute="bottom" secondItem="2kW-fq-0WY" secondAttribute="bottom" id="K3x-0u-oAi"/>
                             <constraint firstItem="2kW-fq-0WY" firstAttribute="top" secondItem="25S-rs-gFm" secondAttribute="top" id="Owq-hS-YII"/>
+                            <constraint firstItem="qQZ-Lq-T71" firstAttribute="top" secondItem="25S-rs-gFm" secondAttribute="top" id="SmZ-iH-mmE"/>
                             <constraint firstItem="4i5-5F-fM2" firstAttribute="trailing" secondItem="2kW-fq-0WY" secondAttribute="trailing" id="nBj-Jd-PON"/>
+                            <constraint firstItem="4i5-5F-fM2" firstAttribute="trailing" secondItem="qQZ-Lq-T71" secondAttribute="trailing" id="qr1-81-TCn"/>
+                            <constraint firstItem="qQZ-Lq-T71" firstAttribute="leading" secondItem="4i5-5F-fM2" secondAttribute="leading" id="ugn-gY-Jin"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4i5-5F-fM2"/>
                     </view>
@@ -240,6 +260,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="2kW-fq-0WY" id="nZO-K7-vpT"/>
+                        <outlet property="customNavBackgroundView" destination="qQZ-Lq-T71" id="03z-IO-uAQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kT7-AK-oLd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

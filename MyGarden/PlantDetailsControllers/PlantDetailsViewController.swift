@@ -13,6 +13,8 @@ class PlantDetailsViewController: UIViewController {
     fileprivate let headerId = "headerId"
     fileprivate let paddingCollectionCell: CGFloat = 16
     
+    fileprivate var isDarkStatusBar: Bool = false
+    @IBOutlet weak var customNavBackgroundView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
@@ -23,8 +25,12 @@ class PlantDetailsViewController: UIViewController {
         setupCollectionView()
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return (isDarkStatusBar) ? .default : .lightContent
+    }
+    
     fileprivate func setupNavigationBar() {
-        UIApplication.shared.statusBarUIView?.backgroundColor = .clear
+        customNavBackgroundView.alpha = 0.0
         
         if let navigationBar = navigationController?.navigationBar {
             navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -92,13 +98,13 @@ extension PlantDetailsViewController: UICollectionViewDelegateFlowLayout {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         var offset = ((scrollView.contentOffset.y / 170) - 1.2) * 5
         offset = (offset < 0) ? 0 : offset
-        offset = min(1, offset)
+        offset = min(offset, 1)
         
-        let backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: offset)
-        navigationController?.navigationBar.backgroundColor = backgroundColor
+        isDarkStatusBar = (offset > 0.5)
+        setNeedsStatusBarAppearanceUpdate()
+        
+        customNavBackgroundView.alpha = offset
         navigationController?.navigationBar.tintColor = UIColor(white: (1 - offset), alpha: 1)
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor(white: 0, alpha: offset)]
-        UIApplication.shared.statusBarUIView?.backgroundColor = backgroundColor
     }
     
 }
