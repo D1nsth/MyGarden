@@ -14,6 +14,10 @@
 		DF3F8FB92446D2EA003FD2E6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3F8FB82446D2EA003FD2E6 /* SceneDelegate.swift */; };
 		DF3F8FC02446D2ED003FD2E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF3F8FBF2446D2ED003FD2E6 /* Assets.xcassets */; };
 		DF3F8FC32446D2ED003FD2E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF3F8FC12446D2ED003FD2E6 /* LaunchScreen.storyboard */; };
+		DFBF5EBB2452B7F0007DC0BE /* PlantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBF5EBA2452B7F0007DC0BE /* PlantModel.swift */; };
+		DFBF5EBE2452BBA7007DC0BE /* AddPlantController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBF5EBD2452BBA7007DC0BE /* AddPlantController.swift */; };
+		DFBF5EC02452BDEA007DC0BE /* DataCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBF5EBF2452BDEA007DC0BE /* DataCollectionCell.swift */; };
+		DFBF5EC22452C3CD007DC0BE /* PlantDetailsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBF5EC12452C3CD007DC0BE /* PlantDetailsCollectionCell.swift */; };
 		DFC56569244EF3370048F1EA /* MainGarden.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFC56568244EF3370048F1EA /* MainGarden.storyboard */; };
 		DFF0DA8F2450923A0073EA2D /* PlantDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF0DA8E2450923A0073EA2D /* PlantDetailsViewController.swift */; };
 		DFF0DA912450925E0073EA2D /* PlantDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF0DA902450925E0073EA2D /* PlantDetailsHeaderView.swift */; };
@@ -30,6 +34,10 @@
 		DF3F8FBF2446D2ED003FD2E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DF3F8FC22446D2ED003FD2E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DF3F8FC42446D2ED003FD2E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DFBF5EBA2452B7F0007DC0BE /* PlantModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantModel.swift; sourceTree = "<group>"; };
+		DFBF5EBD2452BBA7007DC0BE /* AddPlantController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlantController.swift; sourceTree = "<group>"; };
+		DFBF5EBF2452BDEA007DC0BE /* DataCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCollectionCell.swift; sourceTree = "<group>"; };
+		DFBF5EC12452C3CD007DC0BE /* PlantDetailsCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantDetailsCollectionCell.swift; sourceTree = "<group>"; };
 		DFC56568244EF3370048F1EA /* MainGarden.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainGarden.storyboard; sourceTree = "<group>"; };
 		DFF0DA8E2450923A0073EA2D /* PlantDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantDetailsViewController.swift; sourceTree = "<group>"; };
 		DFF0DA902450925E0073EA2D /* PlantDetailsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantDetailsHeaderView.swift; sourceTree = "<group>"; };
@@ -94,7 +102,9 @@
 			children = (
 				DF3F8FB62446D2EA003FD2E6 /* AppDelegate.swift */,
 				DF3F8FB82446D2EA003FD2E6 /* SceneDelegate.swift */,
+				DFBF5EB92452B7CE007DC0BE /* Models */,
 				DFF0DA8D2450920D0073EA2D /* PlantDetailsControllers */,
+				DFBF5EBC2452BB6C007DC0BE /* AddPlantController */,
 				DF0CDAEE24507E4D00B5AE2A /* MainGardenControllers */,
 				DFC56568244EF3370048F1EA /* MainGarden.storyboard */,
 				DF3F8FBF2446D2ED003FD2E6 /* Assets.xcassets */,
@@ -104,10 +114,28 @@
 			path = MyGarden;
 			sourceTree = "<group>";
 		};
+		DFBF5EB92452B7CE007DC0BE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DFBF5EBA2452B7F0007DC0BE /* PlantModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DFBF5EBC2452BB6C007DC0BE /* AddPlantController */ = {
+			isa = PBXGroup;
+			children = (
+				DFBF5EBD2452BBA7007DC0BE /* AddPlantController.swift */,
+				DFBF5EBF2452BDEA007DC0BE /* DataCollectionCell.swift */,
+			);
+			path = AddPlantController;
+			sourceTree = "<group>";
+		};
 		DFF0DA8D2450920D0073EA2D /* PlantDetailsControllers */ = {
 			isa = PBXGroup;
 			children = (
 				DFF0DA8E2450923A0073EA2D /* PlantDetailsViewController.swift */,
+				DFBF5EC12452C3CD007DC0BE /* PlantDetailsCollectionCell.swift */,
 				DFF0DA902450925E0073EA2D /* PlantDetailsHeaderView.swift */,
 				DFF0DA92245092730073EA2D /* PlantDetailsHeaderLayout.swift */,
 			);
@@ -188,9 +216,13 @@
 				DF3F8FB72446D2EA003FD2E6 /* AppDelegate.swift in Sources */,
 				DF12D99524508E01008DAC98 /* GardenCollectionFlowLayout.swift in Sources */,
 				DF3F8FB92446D2EA003FD2E6 /* SceneDelegate.swift in Sources */,
+				DFBF5EC02452BDEA007DC0BE /* DataCollectionCell.swift in Sources */,
 				DF0CDAED24507B8300B5AE2A /* MainGardenController.swift in Sources */,
+				DFBF5EBB2452B7F0007DC0BE /* PlantModel.swift in Sources */,
 				DFF0DA8F2450923A0073EA2D /* PlantDetailsViewController.swift in Sources */,
 				DFF0DA93245092730073EA2D /* PlantDetailsHeaderLayout.swift in Sources */,
+				DFBF5EC22452C3CD007DC0BE /* PlantDetailsCollectionCell.swift in Sources */,
+				DFBF5EBE2452BBA7007DC0BE /* AddPlantController.swift in Sources */,
 				DF0CDAF024507EA700B5AE2A /* GardenCollectionCell.swift in Sources */,
 				DFF0DA912450925E0073EA2D /* PlantDetailsHeaderView.swift in Sources */,
 			);

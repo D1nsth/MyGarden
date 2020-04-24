@@ -10,9 +10,8 @@ import UIKit
 
 class PlantDetailsViewController: UIViewController {
 
-    fileprivate let cellId = "cellId"
     fileprivate let headerId = "headerId"
-    fileprivate let padding: CGFloat = 16
+    fileprivate let paddingCollectionCell: CGFloat = 16
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -20,7 +19,7 @@ class PlantDetailsViewController: UIViewController {
         super.viewDidLoad()
 
         setupNavigationBar()
-        setupCollectionViewLayout()
+//        setupCollectionViewLayout()
         setupCollectionView()
     }
     
@@ -39,7 +38,10 @@ class PlantDetailsViewController: UIViewController {
     fileprivate func setupCollectionViewLayout() {
         // layout customization
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.sectionInset = .init(top: padding, left: padding, bottom: padding, right: padding)
+            layout.sectionInset = .init(top: paddingCollectionCell,
+                                        left: paddingCollectionCell,
+                                        bottom: paddingCollectionCell,
+                                        right: paddingCollectionCell)
         }
     }
     
@@ -49,7 +51,7 @@ class PlantDetailsViewController: UIViewController {
         
         collectionView.contentInsetAdjustmentBehavior = .never
         
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+//        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         collectionView.register(PlantDetailsHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader , withReuseIdentifier: headerId)
     }
     
@@ -63,8 +65,7 @@ extension PlantDetailsViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-        cell.backgroundColor = .black
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PlantDetailsCollectionCell.REUSE_ID, for: indexPath) as! PlantDetailsCollectionCell
         
         return cell
     }
@@ -81,7 +82,7 @@ extension PlantDetailsViewController: UICollectionViewDataSource {
 extension PlantDetailsViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: view.frame.width - 2 * padding, height: 45)
+        return .init(width: view.frame.width, height: 95)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {

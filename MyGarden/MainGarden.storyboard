@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="y5B-8V-B0X">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="y5B-8V-B0X">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -34,7 +34,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3Qx-on-Tlc">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="744"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewLayout key="collectionViewLayout" id="c2n-wf-1xR" customClass="GardenCollectionFlowLayout" customModule="MyGarden" customModuleProvider="target"/>
                                 <cells>
@@ -75,13 +75,22 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WzG-OG-63A">
+                                <rect key="frame" x="184" y="832" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="hvw-GV-Smu" kind="show" id="iMl-9E-Fds"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="3Qx-on-Tlc" firstAttribute="top" secondItem="9vU-p1-5fY" secondAttribute="top" id="7WA-v5-0c6"/>
                             <constraint firstItem="3Qx-on-Tlc" firstAttribute="leading" secondItem="9vU-p1-5fY" secondAttribute="leading" id="Ecd-1f-SrA"/>
-                            <constraint firstItem="9vU-p1-5fY" firstAttribute="bottom" secondItem="3Qx-on-Tlc" secondAttribute="bottom" id="R49-HV-t8X"/>
+                            <constraint firstItem="WzG-OG-63A" firstAttribute="centerX" secondItem="9vU-p1-5fY" secondAttribute="centerX" id="JR2-B2-ytG"/>
+                            <constraint firstItem="WzG-OG-63A" firstAttribute="top" secondItem="3Qx-on-Tlc" secondAttribute="bottom" id="QvA-sH-ExD"/>
                             <constraint firstItem="9vU-p1-5fY" firstAttribute="trailing" secondItem="3Qx-on-Tlc" secondAttribute="trailing" id="Wrh-ho-SMc"/>
+                            <constraint firstItem="9vU-p1-5fY" firstAttribute="bottom" secondItem="WzG-OG-63A" secondAttribute="bottom" id="oBM-QZ-MuH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9vU-p1-5fY"/>
                     </view>
@@ -96,6 +105,75 @@
             </objects>
             <point key="canvasLocation" x="40.579710144927539" y="93.75"/>
         </scene>
+        <!--Add Plant Controller-->
+        <scene sceneID="eSH-s6-zFE">
+            <objects>
+                <viewController id="hvw-GV-Smu" customClass="AddPlantController" customModule="MyGarden" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wll-bY-d4B">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bgG-SE-gCd">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewLayout key="collectionViewLayout" id="ZJn-ut-Fks" customClass="PlantDetailsHeaderLayout" customModule="MyGarden" customModuleProvider="target"/>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="dataCollectionCellReuseId" id="DLW-YJ-5uL" customClass="DataCollectionCell" customModule="MyGarden" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="95"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="bf5-jM-e3h">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="95"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MLh-yl-FdR">
+                                                    <rect key="frame" x="16" y="10" width="382" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Kek" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tl7-CO-IlJ">
+                                                    <rect key="frame" x="16" y="41" width="382" height="44"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Tl7-CO-IlJ" firstAttribute="leading" secondItem="bf5-jM-e3h" secondAttribute="leading" constant="16" id="0Cv-dk-GW7"/>
+                                                <constraint firstAttribute="trailing" secondItem="MLh-yl-FdR" secondAttribute="trailing" constant="16" id="5O2-2K-tks"/>
+                                                <constraint firstItem="MLh-yl-FdR" firstAttribute="top" secondItem="bf5-jM-e3h" secondAttribute="top" constant="10" id="Nf5-YA-ROK"/>
+                                                <constraint firstAttribute="bottom" secondItem="Tl7-CO-IlJ" secondAttribute="bottom" constant="10" id="ThH-KX-irl"/>
+                                                <constraint firstAttribute="trailing" secondItem="Tl7-CO-IlJ" secondAttribute="trailing" constant="16" id="TjZ-Ac-d7o"/>
+                                                <constraint firstItem="Tl7-CO-IlJ" firstAttribute="top" secondItem="MLh-yl-FdR" secondAttribute="bottom" constant="10" id="uiA-rV-KID"/>
+                                                <constraint firstItem="MLh-yl-FdR" firstAttribute="leading" secondItem="bf5-jM-e3h" secondAttribute="leading" constant="16" id="vbk-GI-12c"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="414" height="95"/>
+                                        <connections>
+                                            <outlet property="inputDataTextField" destination="Tl7-CO-IlJ" id="rbX-Om-C2R"/>
+                                            <outlet property="titleCellLabel" destination="MLh-yl-FdR" id="tLV-tR-i52"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="bgG-SE-gCd" firstAttribute="leading" secondItem="QMh-d8-sIN" secondAttribute="leading" id="Ro5-0e-j5a"/>
+                            <constraint firstItem="QMh-d8-sIN" firstAttribute="bottom" secondItem="bgG-SE-gCd" secondAttribute="bottom" id="UO0-dJ-IYg"/>
+                            <constraint firstItem="QMh-d8-sIN" firstAttribute="trailing" secondItem="bgG-SE-gCd" secondAttribute="trailing" id="gNn-lR-9kg"/>
+                            <constraint firstItem="bgG-SE-gCd" firstAttribute="top" secondItem="wll-bY-d4B" secondAttribute="top" id="nZK-yQ-xXt"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="QMh-d8-sIN"/>
+                    </view>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="2CL-U6-Kba"/>
+                    <connections>
+                        <outlet property="dataCollectionView" destination="bgG-SE-gCd" id="h4W-N1-h8U"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="47v-fP-DHH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="40.579710144927539" y="917.41071428571422"/>
+        </scene>
         <!--Name plant-->
         <scene sceneID="acY-z8-Xfb">
             <objects>
@@ -108,7 +186,44 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewLayout key="collectionViewLayout" id="lXC-eO-8Nh" customClass="PlantDetailsHeaderLayout" customModule="MyGarden" customModuleProvider="target"/>
-                                <cells/>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="detailsCollectionCellReuseId" id="wld-br-yyi" customClass="PlantDetailsCollectionCell" customModule="MyGarden" customModuleProvider="target">
+                                        <rect key="frame" x="-0.5" y="0.0" width="415" height="97"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="I0L-57-cD2">
+                                            <rect key="frame" x="0.0" y="0.0" width="415" height="97"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EyN-CV-RRG">
+                                                    <rect key="frame" x="16" y="10" width="383" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k1C-st-SOx">
+                                                    <rect key="frame" x="16" y="40.5" width="383" height="46.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="EyN-CV-RRG" secondAttribute="trailing" constant="16" id="57H-FW-e29"/>
+                                                <constraint firstItem="EyN-CV-RRG" firstAttribute="top" secondItem="I0L-57-cD2" secondAttribute="top" constant="10" id="7YN-8P-cLD"/>
+                                                <constraint firstItem="k1C-st-SOx" firstAttribute="top" secondItem="EyN-CV-RRG" secondAttribute="bottom" constant="10" id="818-V8-aUh"/>
+                                                <constraint firstAttribute="bottom" secondItem="k1C-st-SOx" secondAttribute="bottom" constant="10" id="O3j-bx-vh8"/>
+                                                <constraint firstItem="k1C-st-SOx" firstAttribute="leading" secondItem="I0L-57-cD2" secondAttribute="leading" constant="16" id="ckN-TA-0ke"/>
+                                                <constraint firstItem="EyN-CV-RRG" firstAttribute="leading" secondItem="I0L-57-cD2" secondAttribute="leading" constant="16" id="q5x-fm-90c"/>
+                                                <constraint firstAttribute="trailing" secondItem="k1C-st-SOx" secondAttribute="trailing" constant="16" id="vNB-0y-xbX"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="415" height="97"/>
+                                        <connections>
+                                            <outlet property="textForCellLabel" destination="k1C-st-SOx" id="B3g-dK-E9Y"/>
+                                            <outlet property="titleCellLabel" destination="EyN-CV-RRG" id="Ivg-aW-3Ea"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -129,7 +244,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kT7-AK-oLd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1088" y="94"/>
+            <point key="canvasLocation" x="1086.9565217391305" y="93.75"/>
         </scene>
     </scenes>
     <resources>
