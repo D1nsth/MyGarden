@@ -10,27 +10,46 @@ import UIKit
 
 class AddPlantController: UIViewController {
 
+    public enum SectionsAddPlant: CaseIterable {
+        case name
+        case kind
+        case description
+    }
+    
     @IBOutlet weak var dataCollectionView: UICollectionView!
+    
+    var currentPlant: PlantModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        dataCollectionView.dataSource = self
-        dataCollectionView.delegate = self
-        // Do any additional setup after loading the view.
+        setupCollectionView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateNavigationBar()
+    }
+    
+    fileprivate func setupCollectionView() {
+        dataCollectionView.dataSource = self
+        dataCollectionView.delegate = self
+    }
+    
+    fileprivate func updateNavigationBar() {
+        navigationController?.navigationBar.tintColor = .black
+    }
     
 }
 
 extension AddPlantController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 18
+        return SectionsAddPlant.allCases.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DataCollectionCell.REUSE_ID, for: indexPath) as! DataCollectionCell
+        cell.configureCellWith(currentPlant, section: SectionsAddPlant.allCases[indexPath.row])
         
         return cell
     }

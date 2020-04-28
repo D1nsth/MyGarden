@@ -15,4 +15,9 @@ class GardenCollectionCell: UICollectionViewCell {
     @IBOutlet weak var plantImageView: UIImageView!
     @IBOutlet weak var plantNameLabel: UILabel!
     
+    public func configureCellWith(_ image: UIImage, andName name: String) {
+        plantImageView.image = image
+        plantNameLabel.text = name
+    }
+    
 }

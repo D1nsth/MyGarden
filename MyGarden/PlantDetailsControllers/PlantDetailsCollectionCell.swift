@@ -15,4 +15,19 @@ class PlantDetailsCollectionCell: UICollectionViewCell {
     @IBOutlet weak var titleCellLabel: UILabel!
     @IBOutlet weak var textForCellLabel: UILabel!
     
+    public func configureCellWith(_ plant: PlantModel, section: PlantDetailsViewController.SectionsDetails) {
+
+        switch section {
+            
+        case .kind:
+            titleCellLabel.text = "Kind"
+            textForCellLabel.text = plant.kind
+            
+        case .description:
+            titleCellLabel.text = "Description"
+            textForCellLabel.text = plant.description
+        }
+        
+    }
+    
 }

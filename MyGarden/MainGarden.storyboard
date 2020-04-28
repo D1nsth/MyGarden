@@ -13,10 +13,13 @@
         <scene sceneID="n3e-Uv-ZeE">
             <objects>
                 <navigationController id="y5B-8V-B0X" customClass="CustomNavigationController" customModule="MyGarden" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="roV-c6-WGL">
+                    <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="roV-c6-WGL">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2rB-OG-eRB">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="n43-So-VYb" kind="relationship" relationship="rootViewController" id="lhR-bt-mcp"/>
                     </connections>
@@ -47,10 +50,11 @@
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plant" translatesAutoresizingMaskIntoConstraints="NO" id="BMo-CA-ige">
                                                     <rect key="frame" x="0.0" y="0.0" width="170" height="200"/>
+                                                    <color key="backgroundColor" red="0.73725490196078436" green="0.75686274509803919" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name plant" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BM8-34-LUS">
                                                     <rect key="frame" x="16" y="160" width="138" height="24"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -70,7 +74,6 @@
                                         <connections>
                                             <outlet property="plantImageView" destination="BMo-CA-ige" id="8Mq-aM-EkA"/>
                                             <outlet property="plantNameLabel" destination="BM8-34-LUS" id="gXw-6F-6Gx"/>
-                                            <segue destination="6zN-8U-EHJ" kind="show" id="Izu-NI-gek"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -99,6 +102,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="gardenCollectionView" destination="3Qx-on-Tlc" id="rJH-eL-UCq"/>
+                        <segue destination="6zN-8U-EHJ" kind="show" identifier="showPlantDetailsSegue" id="zdX-vn-dOA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hsB-cU-VJM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -113,7 +117,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bgG-SE-gCd">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bgG-SE-gCd">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewLayout key="collectionViewLayout" id="ZJn-ut-Fks" customClass="PlantDetailsHeaderLayout" customModule="MyGarden" customModuleProvider="target"/>
@@ -172,7 +176,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="47v-fP-DHH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="40.579710144927539" y="917.41071428571422"/>
+            <point key="canvasLocation" x="41" y="919"/>
         </scene>
         <!--Name plant-->
         <scene sceneID="acY-z8-Xfb">
@@ -182,16 +186,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2kW-fq-0WY">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2kW-fq-0WY">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewLayout key="collectionViewLayout" id="lXC-eO-8Nh" customClass="PlantDetailsHeaderLayout" customModule="MyGarden" customModuleProvider="target"/>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="detailsCollectionCellReuseId" id="wld-br-yyi" customClass="PlantDetailsCollectionCell" customModule="MyGarden" customModuleProvider="target">
-                                        <rect key="frame" x="-0.5" y="0.0" width="415" height="97"/>
+                                        <rect key="frame" x="-0.5" y="0.0" width="415" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="I0L-57-cD2">
-                                            <rect key="frame" x="0.0" y="0.0" width="415" height="97"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="LDy-Z8-8iG">
+                                            <rect key="frame" x="0.0" y="0.0" width="415" height="66"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EyN-CV-RRG">
@@ -201,23 +205,33 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k1C-st-SOx">
-                                                    <rect key="frame" x="16" y="40.5" width="383" height="46.5"/>
+                                                    <rect key="frame" x="16" y="30.5" width="383" height="24.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MF6-IX-sDe">
+                                                    <rect key="frame" x="16" y="65" width="383" height="1"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="KN1-ca-NR5"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="EyN-CV-RRG" secondAttribute="trailing" constant="16" id="57H-FW-e29"/>
-                                                <constraint firstItem="EyN-CV-RRG" firstAttribute="top" secondItem="I0L-57-cD2" secondAttribute="top" constant="10" id="7YN-8P-cLD"/>
-                                                <constraint firstItem="k1C-st-SOx" firstAttribute="top" secondItem="EyN-CV-RRG" secondAttribute="bottom" constant="10" id="818-V8-aUh"/>
-                                                <constraint firstAttribute="bottom" secondItem="k1C-st-SOx" secondAttribute="bottom" constant="10" id="O3j-bx-vh8"/>
-                                                <constraint firstItem="k1C-st-SOx" firstAttribute="leading" secondItem="I0L-57-cD2" secondAttribute="leading" constant="16" id="ckN-TA-0ke"/>
-                                                <constraint firstItem="EyN-CV-RRG" firstAttribute="leading" secondItem="I0L-57-cD2" secondAttribute="leading" constant="16" id="q5x-fm-90c"/>
+                                                <constraint firstItem="EyN-CV-RRG" firstAttribute="top" secondItem="LDy-Z8-8iG" secondAttribute="top" constant="10" id="7YN-8P-cLD"/>
+                                                <constraint firstItem="k1C-st-SOx" firstAttribute="top" secondItem="EyN-CV-RRG" secondAttribute="bottom" id="818-V8-aUh"/>
+                                                <constraint firstItem="MF6-IX-sDe" firstAttribute="top" secondItem="k1C-st-SOx" secondAttribute="bottom" constant="10" id="BZk-Ff-oZt"/>
+                                                <constraint firstAttribute="bottom" secondItem="MF6-IX-sDe" secondAttribute="bottom" id="QHO-1M-TjI"/>
+                                                <constraint firstItem="MF6-IX-sDe" firstAttribute="leading" secondItem="LDy-Z8-8iG" secondAttribute="leading" constant="16" id="b43-zB-e6G"/>
+                                                <constraint firstItem="k1C-st-SOx" firstAttribute="leading" secondItem="LDy-Z8-8iG" secondAttribute="leading" constant="16" id="ckN-TA-0ke"/>
+                                                <constraint firstAttribute="trailing" secondItem="MF6-IX-sDe" secondAttribute="trailing" constant="16" id="hgM-i4-Eng"/>
+                                                <constraint firstItem="EyN-CV-RRG" firstAttribute="leading" secondItem="LDy-Z8-8iG" secondAttribute="leading" constant="16" id="q5x-fm-90c"/>
                                                 <constraint firstAttribute="trailing" secondItem="k1C-st-SOx" secondAttribute="trailing" constant="16" id="vNB-0y-xbX"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="415" height="97"/>
+                                        <size key="customSize" width="415" height="66"/>
                                         <connections>
                                             <outlet property="textForCellLabel" destination="k1C-st-SOx" id="B3g-dK-E9Y"/>
                                             <outlet property="titleCellLabel" destination="EyN-CV-RRG" id="Ivg-aW-3Ea"/>
@@ -257,6 +271,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Name plant" largeTitleDisplayMode="never" id="8Dc-vR-aUp">
                         <barButtonItem key="backBarButtonItem" title=" " id="8fl-wR-c0J"/>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="edit" id="Jpi-d9-TB1">
+                            <connections>
+                                <segue destination="hvw-GV-Smu" kind="show" identifier="editPlantDetailsSegue" id="iLe-8Y-CFX"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="2kW-fq-0WY" id="nZO-K7-vpT"/>
@@ -268,6 +287,9 @@
             <point key="canvasLocation" x="1086.9565217391305" y="93.75"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="iMl-9E-Fds"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="plant" width="600" height="220"/>
     </resources>
