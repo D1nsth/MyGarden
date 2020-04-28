@@ -22,11 +22,13 @@ class AddPlantController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupCollectionView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         updateNavigationBar()
     }
     
@@ -48,7 +50,7 @@ extension AddPlantController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DataCollectionCell.REUSE_ID, for: indexPath) as! DataCollectionCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DataCollectionCell.reuseId, for: indexPath) as! DataCollectionCell
         cell.configureCellWith(currentPlant, section: SectionsAddPlant.allCases[indexPath.row])
         
         return cell

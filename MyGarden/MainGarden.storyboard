@@ -39,7 +39,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3Qx-on-Tlc">
                                 <rect key="frame" x="0.0" y="88" width="414" height="744"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewLayout key="collectionViewLayout" id="c2n-wf-1xR" customClass="GardenCollectionFlowLayout" customModule="MyGarden" customModuleProvider="target"/>
+                                <collectionViewLayout key="collectionViewLayout" id="gDN-o6-fYB" customClass="GardenCollectionFlowLayout" customModule="MyGarden" customModuleProvider="target"/>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="gardenCollectionCellReuseId" id="WCu-8Y-kAf" customClass="GardenCollectionCell" customModule="MyGarden" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="170" height="200"/>

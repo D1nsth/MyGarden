@@ -10,7 +10,7 @@ import UIKit
 
 class GardenCollectionCell: UICollectionViewCell {
     
-    static let REUSE_ID = "gardenCollectionCellReuseId"
+    static let reuseId = "gardenCollectionCellReuseId"
     
     @IBOutlet weak var plantImageView: UIImageView!
     @IBOutlet weak var plantNameLabel: UILabel!

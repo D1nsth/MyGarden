@@ -15,8 +15,7 @@ class PlantDetailsViewController: UIViewController {
         case description
     }
     
-    fileprivate let headerId = "headerId"
-    fileprivate let EDIT_DETAILS_SEGUE_ID = "editPlantDetailsSegue"
+    fileprivate let editDetailsSegueId = "editPlantDetailsSegue"
     fileprivate let paddingCollectionCell: CGFloat = 16
     
     fileprivate var isDarkStatusBar: Bool = false
@@ -27,6 +26,7 @@ class PlantDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupNavigationBar()
 //        setupCollectionViewLayout()
         setupCollectionView()
@@ -35,6 +35,7 @@ class PlantDetailsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         updateNavigationBar()
     }
     
@@ -72,11 +73,11 @@ class PlantDetailsViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.contentInsetAdjustmentBehavior = .never
         
-        collectionView.register(PlantDetailsHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader , withReuseIdentifier: headerId)
+        collectionView.register(PlantDetailsHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader , withReuseIdentifier: PlantDetailsHeaderView.reuseId)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == EDIT_DETAILS_SEGUE_ID {
+        if segue.identifier == editDetailsSegueId {
             if let nextController = segue.destination as? AddPlantController {
                 nextController.currentPlant = currentPlant
             }
@@ -97,19 +98,18 @@ extension PlantDetailsViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PlantDetailsCollectionCell.REUSE_ID, for: indexPath) as! PlantDetailsCollectionCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PlantDetailsCollectionCell.reuseId, for: indexPath) as! PlantDetailsCollectionCell
         cell.configureCellWith(plant, section: SectionsDetails.allCases[indexPath.row])
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! PlantDetailsHeaderView
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: PlantDetailsHeaderView.reuseId, for: indexPath) as! PlantDetailsHeaderView
         
         if let plant = currentPlant {
-            let image = plant.image ?? #imageLiteral(resourceName: "default-plant")
             let name = plant.name ?? ""
-            header.setImage(image, withTitle: name)
+            header.setImages(plant.images, withTitle: name)
         }
         
         return header

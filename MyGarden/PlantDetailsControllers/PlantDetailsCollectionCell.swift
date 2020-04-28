@@ -10,7 +10,7 @@ import UIKit
 
 class PlantDetailsCollectionCell: UICollectionViewCell {
     
-    static let REUSE_ID = "detailsCollectionCellReuseId"
+    static let reuseId = "detailsCollectionCellReuseId"
     
     @IBOutlet weak var titleCellLabel: UILabel!
     @IBOutlet weak var textForCellLabel: UILabel!

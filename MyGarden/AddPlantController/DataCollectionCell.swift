@@ -10,7 +10,7 @@ import UIKit
 
 class DataCollectionCell: UICollectionViewCell {
     
-    static let REUSE_ID = "dataCollectionCellReuseId"
+    static let reuseId = "dataCollectionCellReuseId"
     
     @IBOutlet weak var titleCellLabel: UILabel!
     @IBOutlet weak var inputDataTextField: UITextField!
