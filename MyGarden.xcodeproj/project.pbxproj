@@ -17,6 +17,10 @@
 		DF3F8FC32446D2ED003FD2E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF3F8FC12446D2ED003FD2E6 /* LaunchScreen.storyboard */; };
 		DF55D8FE245300460092A893 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF55D8FD245300460092A893 /* CustomNavigationController.swift */; };
 		DF64E7662458D96E00D579BF /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF64E7652458D96E00D579BF /* Constraints.swift */; };
+		DF64E76A2458E44300D579BF /* MyGarden.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DF64E7682458E44300D579BF /* MyGarden.xcdatamodeld */; };
+		DF64E76D2458E5FC00D579BF /* Plant+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF64E76B2458E5FC00D579BF /* Plant+CoreDataClass.swift */; };
+		DF64E76E2458E5FC00D579BF /* Plant+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF64E76C2458E5FC00D579BF /* Plant+CoreDataProperties.swift */; };
+		DF64E7722458E64200D579BF /* CDPlantService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF64E7712458E64200D579BF /* CDPlantService.swift */; };
 		DFBF5EBB2452B7F0007DC0BE /* PlantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBF5EBA2452B7F0007DC0BE /* PlantModel.swift */; };
 		DFBF5EBE2452BBA7007DC0BE /* AddPlantController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBF5EBD2452BBA7007DC0BE /* AddPlantController.swift */; };
 		DFBF5EC02452BDEA007DC0BE /* DataCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBF5EBF2452BDEA007DC0BE /* DataCollectionCell.swift */; };
@@ -40,6 +44,10 @@
 		DF3F8FC42446D2ED003FD2E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF55D8FD245300460092A893 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		DF64E7652458D96E00D579BF /* Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
+		DF64E7692458E44300D579BF /* MyGarden.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyGarden.xcdatamodel; sourceTree = "<group>"; };
+		DF64E76B2458E5FC00D579BF /* Plant+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Plant+CoreDataClass.swift"; sourceTree = "<group>"; };
+		DF64E76C2458E5FC00D579BF /* Plant+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Plant+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		DF64E7712458E64200D579BF /* CDPlantService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDPlantService.swift; sourceTree = "<group>"; };
 		DFBF5EBA2452B7F0007DC0BE /* PlantModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantModel.swift; sourceTree = "<group>"; };
 		DFBF5EBD2452BBA7007DC0BE /* AddPlantController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlantController.swift; sourceTree = "<group>"; };
 		DFBF5EBF2452BDEA007DC0BE /* DataCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCollectionCell.swift; sourceTree = "<group>"; };
@@ -124,6 +132,8 @@
 				DF0CDAEE24507E4D00B5AE2A /* MainGardenControllers */,
 				DFC56568244EF3370048F1EA /* MainGarden.storyboard */,
 				DF3F8FC12446D2ED003FD2E6 /* LaunchScreen.storyboard */,
+				DF64E76F2458E60A00D579BF /* Services */,
+				DF64E7672458E40700D579BF /* CoreDataModel */,
 				DF64E7642458D94D00D579BF /* Helpers */,
 				DF3F8FBF2446D2ED003FD2E6 /* Assets.xcassets */,
 				DF3F8FC42446D2ED003FD2E6 /* Info.plist */,
@@ -137,6 +147,32 @@
 				DF64E7652458D96E00D579BF /* Constraints.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		DF64E7672458E40700D579BF /* CoreDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				DF64E7682458E44300D579BF /* MyGarden.xcdatamodeld */,
+				DF64E76B2458E5FC00D579BF /* Plant+CoreDataClass.swift */,
+				DF64E76C2458E5FC00D579BF /* Plant+CoreDataProperties.swift */,
+			);
+			path = CoreDataModel;
+			sourceTree = "<group>";
+		};
+		DF64E76F2458E60A00D579BF /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				DF64E7702458E62300D579BF /* CoreDataService */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		DF64E7702458E62300D579BF /* CoreDataService */ = {
+			isa = PBXGroup;
+			children = (
+				DF64E7712458E64200D579BF /* CDPlantService.swift */,
+			);
+			path = CoreDataService;
 			sourceTree = "<group>";
 		};
 		DFBF5EB92452B7CE007DC0BE /* Models */ = {
@@ -242,11 +278,15 @@
 				DF12D99524508E01008DAC98 /* GardenCollectionFlowLayout.swift in Sources */,
 				DF3B8ADB245871C800160F3D /* PlantDetailsHeaderViewCell.swift in Sources */,
 				DF3F8FB92446D2EA003FD2E6 /* SceneDelegate.swift in Sources */,
+				DF64E76A2458E44300D579BF /* MyGarden.xcdatamodeld in Sources */,
 				DFBF5EC02452BDEA007DC0BE /* DataCollectionCell.swift in Sources */,
+				DF64E76D2458E5FC00D579BF /* Plant+CoreDataClass.swift in Sources */,
 				DF0CDAED24507B8300B5AE2A /* MainGardenController.swift in Sources */,
 				DFBF5EBB2452B7F0007DC0BE /* PlantModel.swift in Sources */,
+				DF64E76E2458E5FC00D579BF /* Plant+CoreDataProperties.swift in Sources */,
 				DF64E7662458D96E00D579BF /* Constraints.swift in Sources */,
 				DFF0DA8F2450923A0073EA2D /* PlantDetailsViewController.swift in Sources */,
+				DF64E7722458E64200D579BF /* CDPlantService.swift in Sources */,
 				DFF0DA93245092730073EA2D /* PlantDetailsHeaderLayout.swift in Sources */,
 				DFBF5EC22452C3CD007DC0BE /* PlantDetailsCollectionCell.swift in Sources */,
 				DFBF5EBE2452BBA7007DC0BE /* AddPlantController.swift in Sources */,
@@ -444,6 +484,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		DF64E7682458E44300D579BF /* MyGarden.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DF64E7692458E44300D579BF /* MyGarden.xcdatamodel */,
+			);
+			currentVersion = DF64E7692458E44300D579BF /* MyGarden.xcdatamodel */;
+			path = MyGarden.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = DF3F8FAB2446D2EA003FD2E6 /* Project object */;
 }

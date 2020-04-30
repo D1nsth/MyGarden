@@ -18,6 +18,7 @@ class AddPlantController: UIViewController {
     
     @IBOutlet weak var dataCollectionView: UICollectionView!
     
+    let plantService = CDPlantService()
     var currentPlant: PlantModel?
     
     override func viewDidLoad() {
@@ -39,6 +40,16 @@ class AddPlantController: UIViewController {
     
     fileprivate func updateNavigationBar() {
         navigationController?.navigationBar.tintColor = .black
+    }
+    
+    @IBAction func savePlantTapped(_ sender: Any) {
+        if currentPlant == nil {
+            // create new plant
+        } else {
+            // save current plant
+        }
+        
+        navigationController?.popViewController(animated: true)
     }
     
 }

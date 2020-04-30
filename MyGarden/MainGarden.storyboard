@@ -169,7 +169,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QMh-d8-sIN"/>
                     </view>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="2CL-U6-Kba"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="2CL-U6-Kba">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="Clf-SB-9Od">
+                            <connections>
+                                <action selector="savePlantTapped:" destination="hvw-GV-Smu" id="azu-Q7-rsR"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="dataCollectionView" destination="bgG-SE-gCd" id="h4W-N1-h8U"/>
                     </connections>
