@@ -10,9 +10,10 @@ import UIKit
 
 struct PlantModel {
     
+    var id: Int
     var name: String?
     var kind: String
-    var description: String
+    var description: String?
     var images: [UIImage]?
     
 }

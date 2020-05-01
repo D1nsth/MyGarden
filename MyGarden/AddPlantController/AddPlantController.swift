@@ -9,16 +9,10 @@
 import UIKit
 
 class AddPlantController: UIViewController {
-
-    public enum SectionsAddPlant: CaseIterable {
-        case name
-        case kind
-        case description
-    }
     
     @IBOutlet weak var dataCollectionView: UICollectionView!
     
-    let plantService = CDPlantService()
+    fileprivate let plantService = CDPlantService()
     var currentPlant: PlantModel?
     
     override func viewDidLoad() {
@@ -43,10 +37,23 @@ class AddPlantController: UIViewController {
     }
     
     @IBAction func savePlantTapped(_ sender: Any) {
-        if currentPlant == nil {
-            // create new plant
+        if let cell = dataCollectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? DataCollectionCell {
+            let name = cell.getName()
+            let kind = cell.getKind()
+            let description = cell.getDescription()
+            
+            if currentPlant == nil {
+                // create new plant
+                let count = plantService.getCountPlant()
+                // TODO: Images
+                plantService.createPlantWithId(count + 1, name: name, kind: kind, description: description, images: nil)
+            } else {
+                // save current plant
+                // TODO: Images
+                plantService.updatePlantWithId(currentPlant!.id, name: name, kind: kind, description: description, images: nil)
+            }
         } else {
-            // save current plant
+            // TODO: Error save
         }
         
         navigationController?.popViewController(animated: true)
@@ -57,12 +64,12 @@ class AddPlantController: UIViewController {
 extension AddPlantController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return SectionsAddPlant.allCases.count
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DataCollectionCell.reuseId, for: indexPath) as! DataCollectionCell
-        cell.configureCellWith(currentPlant, section: SectionsAddPlant.allCases[indexPath.row])
+        cell.configureCellWith(currentPlant)
         
         return cell
     }
@@ -72,7 +79,7 @@ extension AddPlantController: UICollectionViewDataSource {
 extension AddPlantController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: view.frame.width, height: 95)
+        return .init(width: view.frame.width, height: 258)
     }
     
 }

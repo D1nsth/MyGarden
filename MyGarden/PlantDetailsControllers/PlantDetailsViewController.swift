@@ -10,19 +10,22 @@ import UIKit
 
 class PlantDetailsViewController: UIViewController {
 
-    public enum SectionsDetails: CaseIterable {
+    public enum SectionsDetails {
         case kind
         case description
     }
     
-    fileprivate let editDetailsSegueId = "editPlantDetailsSegue"
-    fileprivate let paddingCollectionCell: CGFloat = 16
-    
-    fileprivate var isDarkStatusBar: Bool = false
-    var currentPlant: PlantModel?
-    
     @IBOutlet weak var customNavBackgroundView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    fileprivate let editDetailsSegueId = "editPlantDetailsSegue"
+    fileprivate let paddingCollectionCell: CGFloat = 16
+    fileprivate let plantService = CDPlantService()
+    
+    fileprivate var isDarkStatusBar: Bool = false
+    fileprivate var sections: [SectionsDetails] = [.kind, .description]
+    
+    var currentPlant: PlantModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +39,11 @@ class PlantDetailsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        updateCurrentPlant()
+        setupSectionsCell()
         updateNavigationBar()
+        
+        collectionView.reloadData()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -76,6 +83,28 @@ class PlantDetailsViewController: UIViewController {
         collectionView.register(PlantDetailsHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader , withReuseIdentifier: PlantDetailsHeaderView.reuseId)
     }
     
+    fileprivate func setupSectionsCell() {
+        sections = [.kind, .description]
+        
+        if let descriptionPlant = currentPlant?.description {
+            if descriptionPlant.isEmpty {
+                sections.removeAll { $0 == .description}
+            }
+            
+        } else {
+            sections.removeAll { $0 == .description}
+        }
+    }
+    
+    fileprivate func updateCurrentPlant() {
+        if let id = currentPlant?.id {
+            currentPlant = plantService.getPlantById(id)
+        }
+        //        else {
+        // TODO: Failed get id -> pop view controller
+        //        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == editDetailsSegueId {
             if let nextController = segue.destination as? AddPlantController {
@@ -90,7 +119,7 @@ class PlantDetailsViewController: UIViewController {
 extension PlantDetailsViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return SectionsDetails.allCases.count
+        return sections.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -99,7 +128,7 @@ extension PlantDetailsViewController: UICollectionViewDataSource {
         }
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PlantDetailsCollectionCell.reuseId, for: indexPath) as! PlantDetailsCollectionCell
-        cell.configureCellWith(plant, section: SectionsDetails.allCases[indexPath.row])
+        cell.configureCellWith(plant, section: sections[indexPath.row])
         
         return cell
     }
@@ -108,8 +137,10 @@ extension PlantDetailsViewController: UICollectionViewDataSource {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: PlantDetailsHeaderView.reuseId, for: indexPath) as! PlantDetailsHeaderView
         
         if let plant = currentPlant {
-            let name = plant.name ?? ""
-            header.setImages(plant.images, withTitle: name)
+            let plantName = plant.name ?? ""
+            let title = (plantName.isEmpty) ? plant.kind : plantName
+            
+            header.setImages(plant.images, withTitle: title)
         }
         
         return header
@@ -121,6 +152,7 @@ extension PlantDetailsViewController: UICollectionViewDataSource {
 extension PlantDetailsViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        // TODO: Высчитывать высоту динамически
         return .init(width: view.frame.width, height: 73)
     }
     

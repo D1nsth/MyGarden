@@ -10,15 +10,14 @@ import UIKit
 
 class MainGardenController: UIViewController {
     
-    fileprivate let showDetailsSegueId = "showPlantDetailsSegue"
-    fileprivate let paddingCollectionCell: CGFloat = 16
-    
     @IBOutlet weak var gardenCollectionView: UICollectionView!
     
-    let plants: [PlantModel] = [PlantModel(name: "Kek1", kind: "What", description: "123", images: nil),
-                                PlantModel(name: "Kek2", kind: "Keker", description: "321", images: [#imageLiteral(resourceName: "batman"), #imageLiteral(resourceName: "plant")]),
-                                PlantModel(name: "Kek3", kind: "Kyker", description: "630", images: [#imageLiteral(resourceName: "plant"), #imageLiteral(resourceName: "batman")])]
-    var selectPlant: Int?
+    fileprivate let showDetailsSegueId = "showPlantDetailsSegue"
+    fileprivate let paddingCollectionCell: CGFloat = 16
+    fileprivate let plantService = CDPlantService()
+    
+    fileprivate var plants: [PlantModel] = []
+    fileprivate var selectPlant: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +28,9 @@ class MainGardenController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        plants = plantService.getAllPlant()
+        gardenCollectionView.reloadData()
         
         updateNavigationBar()
     }
@@ -71,7 +73,8 @@ extension MainGardenController: UICollectionViewDataSource {
         let plant = plants[indexPath.row]
         let image = plant.images?.first ?? #imageLiteral(resourceName: "default-plant")
         let name = plant.name ?? ""
-        cell.configureCellWith(image, andName: name)
+        let titleCell = (name.isEmpty) ? plant.kind : name
+        cell.configureCellWith(image, andName: titleCell)
         cell.layer.cornerRadius = 16
         
         return cell

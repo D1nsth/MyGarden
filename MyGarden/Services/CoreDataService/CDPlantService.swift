@@ -35,16 +35,19 @@ class CDPlantService {
     }
     
     fileprivate func transformPlantToPlantModel(_ plant: Plant) -> PlantModel {
-        let model = PlantModel(name: plant.name,
-                               kind: plant.kind!,
-                               description: plant.descriptionPlant!,
+        // TODO: Images
+        let model = PlantModel(id: Int(plant.id),
+                               name: plant.name,
+                               // TODO: Kind not optional
+                               kind: plant.kind ?? "",
+                               description: plant.descriptionPlant,
                                images: nil)
         
         return model
     }
     
     // MARK: Create
-    public func createPlantWithId(_ id: Int, name: String?, kind: String, description: String, images: [UIImage]?) {
+    public func createPlantWithId(_ id: Int, name: String?, kind: String, description: String?, images: [UIImage]?) {
         let entity = NSEntityDescription.entity(forEntityName: entityName, in: context)
         let plant = NSManagedObject(entity: entity!, insertInto: context) as! Plant
         
@@ -52,7 +55,7 @@ class CDPlantService {
         plant.name = name
         plant.descriptionPlant = description
         plant.kind = kind
-        // TODO: Сохранять изображения
+        // TODO: Images
         plant.images = nil
         
         savePlantContext()
@@ -60,15 +63,81 @@ class CDPlantService {
     
     // MARK: Read
     public func getAllPlant() -> [PlantModel] {
-        let fetchRequest = getFetchRequest()
+        let request = getFetchRequest()
         
         do {
-            let result = try context.fetch(fetchRequest)
+            let result = try context.fetch(request)
             return transformPlantsToPlantModels(result)
             
         } catch {
             print("(CoreData): Failed get all plant")
             return []
+        }
+    }
+    
+    public func getPlantById(_ id: Int) -> PlantModel? {
+        let predicate = NSPredicate(format: "id == %@", "\(id)")
+        let request = getFetchRequest(with: predicate)
+        
+        do {
+            let plants = try context.fetch(request)
+            
+            if let plant = plants.first {
+                return transformPlantToPlantModel(plant)
+                
+            } else {
+                print("(CoreData): Failed get first plant for read")
+                return nil
+            }
+            
+        } catch {
+            print("(CoreData): Failed get all plant")
+            return nil
+        }
+    }
+    
+    public func getCountPlant() -> Int {
+        let request = getFetchRequest()
+        
+        do {
+            let result = try context.fetch(request)
+            return result.count
+            
+        } catch {
+            print("(CoreData): Failed get all plant")
+            return 0
+        }
+    }
+    
+    // MARK: Update
+    public func updatePlantWithId(_ id: Int, name: String? = nil, kind: String? = nil, description: String? = nil, images: [UIImage]? = nil) {
+        let predicate = NSPredicate(format: "id == %@", "\(id)")
+        let request = getFetchRequest(with: predicate)
+        
+        // get all plants
+        var plants: [Plant] = []
+        do {
+            plants = try context.fetch(request)
+        } catch {
+            print("(CoreData): Failed get plants for update")
+        }
+        
+        // update necessary plant
+        if let plant = plants.first {
+            
+            if let name = name {
+                plant.name = name
+            }
+            
+            if let kind = kind {
+                plant.kind = kind
+            }
+            
+            if let description = description {
+                plant.descriptionPlant = description
+            }
+            // TODO: Images
+            savePlantContext()
         }
     }
     

@@ -13,36 +13,28 @@ class DataCollectionCell: UICollectionViewCell {
     static let reuseId = "dataCollectionCellReuseId"
     
     @IBOutlet weak var titleCellLabel: UILabel!
-    @IBOutlet weak var inputDataTextField: UITextField!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var kindTextField: UITextField!
+    @IBOutlet weak var descriptionTextField: UITextField!
     
-    public func configureCellWith(_ plant: PlantModel?, section: AddPlantController.SectionsAddPlant) {
-        
-        switch section {
-        case .name:
-            titleCellLabel.text = "Name"
-        case .kind:
-            titleCellLabel.text = "Kind"
-        case .description:
-            titleCellLabel.text = "Description"
-        }
-        
-        
+    public func getName() -> String {
+        return nameTextField.text ?? ""
+    }
+    
+    public func getKind() -> String {
+        return kindTextField.text ?? ""
+    }
+    
+    public func getDescription() -> String {
+        return descriptionTextField.text ?? ""
+    }
+    
+    public func configureCellWith(_ plant: PlantModel?) {
         if let plant = plant {
-            switch section {
-            case .name:
-                inputDataTextField.text = plant.name ?? ""
-                
-            case .kind:
-                inputDataTextField.text = plant.kind
-                
-            case .description:
-                inputDataTextField.text = plant.description
-                
-            }
-        } else {
-             inputDataTextField.text = ""
+            nameTextField.text = plant.name
+            kindTextField.text = plant.kind
+            descriptionTextField.text = plant.description
         }
-        
     }
     
 }
