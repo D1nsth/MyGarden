@@ -16,6 +16,7 @@ class PlantDetailsViewController: UIViewController {
     }
     
     @IBOutlet weak var customNavBackgroundView: UIView!
+    @IBOutlet weak var customTitleNavLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     
     fileprivate let editDetailsSegueId = "editPlantDetailsSegue"
@@ -80,7 +81,7 @@ class PlantDetailsViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.contentInsetAdjustmentBehavior = .never
         
-        collectionView.register(PlantDetailsHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader , withReuseIdentifier: PlantDetailsHeaderView.reuseId)
+        collectionView.register(PlantDetailsHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: PlantDetailsHeaderView.reuseId)
     }
     
     fileprivate func setupSectionsCell() {
@@ -140,6 +141,7 @@ extension PlantDetailsViewController: UICollectionViewDataSource {
             let plantName = plant.name ?? ""
             let title = (plantName.isEmpty) ? plant.kind : plantName
             
+            customTitleNavLabel.text = title
             header.setImages(plant.images, withTitle: title)
         }
         

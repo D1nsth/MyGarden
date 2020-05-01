@@ -11,13 +11,18 @@ import UIKit
 class AddPlantController: UIViewController {
     
     @IBOutlet weak var dataCollectionView: UICollectionView!
+    @IBOutlet weak var customNavBackgroundView: UIView!
+    @IBOutlet weak var customTitleNavLabel: UILabel!
     
     fileprivate let plantService = CDPlantService()
+    
+    fileprivate var isDarkStatusBar: Bool = false
     var currentPlant: PlantModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupNavigationBar()
         setupCollectionView()
     }
     
@@ -27,13 +32,31 @@ class AddPlantController: UIViewController {
         updateNavigationBar()
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return (isDarkStatusBar) ? .default : .lightContent
+    }
+    
     fileprivate func setupCollectionView() {
         dataCollectionView.dataSource = self
         dataCollectionView.delegate = self
+        
+        dataCollectionView.contentInsetAdjustmentBehavior = .never
+        dataCollectionView.register(PlantDetailsHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: PlantDetailsHeaderView.reuseId)
+    }
+    
+    fileprivate func setupNavigationBar() {
+        customNavBackgroundView.alpha = 0.0
+        
+        if let navigationBar = navigationController?.navigationBar {
+            navigationBar.setBackgroundImage(UIImage(), for: .default)
+            navigationBar.shadowImage = UIImage()
+            navigationBar.backgroundColor = .clear
+            navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.clear]
+        }
     }
     
     fileprivate func updateNavigationBar() {
-        navigationController?.navigationBar.tintColor = .black
+        navigationController?.navigationBar.tintColor = .white
     }
     
     @IBAction func savePlantTapped(_ sender: Any) {
@@ -74,12 +97,44 @@ extension AddPlantController: UICollectionViewDataSource {
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: PlantDetailsHeaderView.reuseId, for: indexPath) as! PlantDetailsHeaderView
+        
+        if let plant = currentPlant {
+            let plantName = plant.name ?? ""
+            let title = (plantName.isEmpty) ? plant.kind : plantName
+            
+            customTitleNavLabel.text = title
+            header.setImages(plant.images, withTitle: title)
+        }
+        
+        return header
+    }
+    
 }
 
 extension AddPlantController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return .init(width: view.frame.width, height: 258)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return .init(width: view.frame.width, height: 340)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        var offset = ((scrollView.contentOffset.y / 170) - 1.2) * 5
+        offset = (offset < 0) ? 0 : offset
+        offset = min(offset, 1)
+        
+        // update status bar
+        isDarkStatusBar = (offset > 0.5)
+        setNeedsStatusBarAppearanceUpdate()
+        
+        // Animation from custom large navigation bar to default
+        customNavBackgroundView.alpha = offset
+        navigationController?.navigationBar.tintColor = UIColor(white: (1 - offset), alpha: 1)
     }
     
 }

@@ -118,7 +118,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bgG-SE-gCd">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewLayout key="collectionViewLayout" id="ZJn-ut-Fks" customClass="PlantDetailsHeaderLayout" customModule="MyGarden" customModuleProvider="target"/>
                                 <cells>
@@ -243,17 +243,38 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BQh-Y6-Am3">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="88"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iG3-kp-bOV">
+                                        <rect key="frame" x="183" y="56.5" width="48" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="iG3-kp-bOV" firstAttribute="centerX" secondItem="BQh-Y6-Am3" secondAttribute="centerX" id="eI9-Gv-hqU"/>
+                                    <constraint firstAttribute="bottom" secondItem="iG3-kp-bOV" secondAttribute="bottom" constant="11" id="mMX-ih-iah"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="bgG-SE-gCd" firstAttribute="leading" secondItem="QMh-d8-sIN" secondAttribute="leading" id="Ro5-0e-j5a"/>
-                            <constraint firstItem="QMh-d8-sIN" firstAttribute="bottom" secondItem="bgG-SE-gCd" secondAttribute="bottom" id="UO0-dJ-IYg"/>
+                            <constraint firstAttribute="bottom" secondItem="bgG-SE-gCd" secondAttribute="bottom" id="UO0-dJ-IYg"/>
+                            <constraint firstItem="BQh-Y6-Am3" firstAttribute="leading" secondItem="QMh-d8-sIN" secondAttribute="leading" id="dNT-VU-7do"/>
                             <constraint firstItem="QMh-d8-sIN" firstAttribute="trailing" secondItem="bgG-SE-gCd" secondAttribute="trailing" id="gNn-lR-9kg"/>
+                            <constraint firstItem="BQh-Y6-Am3" firstAttribute="top" secondItem="wll-bY-d4B" secondAttribute="top" id="mri-ts-UFL"/>
                             <constraint firstItem="bgG-SE-gCd" firstAttribute="top" secondItem="wll-bY-d4B" secondAttribute="top" id="nZK-yQ-xXt"/>
+                            <constraint firstItem="QMh-d8-sIN" firstAttribute="top" secondItem="BQh-Y6-Am3" secondAttribute="bottom" id="q48-jj-Vv9"/>
+                            <constraint firstItem="QMh-d8-sIN" firstAttribute="trailing" secondItem="BQh-Y6-Am3" secondAttribute="trailing" id="zhB-9x-Fxg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QMh-d8-sIN"/>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="2CL-U6-Kba">
+                        <nil key="title"/>
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="Clf-SB-9Od">
                             <connections>
                                 <action selector="savePlantTapped:" destination="hvw-GV-Smu" id="azu-Q7-rsR"/>
@@ -261,6 +282,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="customNavBackgroundView" destination="BQh-Y6-Am3" id="kYd-P2-2aS"/>
+                        <outlet property="customTitleNavLabel" destination="iG3-kp-bOV" id="rs7-ZN-lvg"/>
                         <outlet property="dataCollectionView" destination="bgG-SE-gCd" id="h4W-N1-h8U"/>
                     </connections>
                 </viewController>
@@ -268,7 +291,7 @@
             </objects>
             <point key="canvasLocation" x="40.579710144927539" y="918.75"/>
         </scene>
-        <!--Name plant-->
+        <!--Plant Details View Controller-->
         <scene sceneID="acY-z8-Xfb">
             <objects>
                 <viewController id="6zN-8U-EHJ" customClass="PlantDetailsViewController" customModule="MyGarden" customModuleProvider="target" sceneMemberID="viewController">
@@ -359,7 +382,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4i5-5F-fM2"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Name plant" largeTitleDisplayMode="never" id="8Dc-vR-aUp">
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="8Dc-vR-aUp">
                         <barButtonItem key="backBarButtonItem" title=" " id="8fl-wR-c0J"/>
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="edit" id="Jpi-d9-TB1">
                             <connections>
@@ -370,6 +393,7 @@
                     <connections>
                         <outlet property="collectionView" destination="2kW-fq-0WY" id="nZO-K7-vpT"/>
                         <outlet property="customNavBackgroundView" destination="qQZ-Lq-T71" id="03z-IO-uAQ"/>
+                        <outlet property="customTitleNavLabel" destination="o5E-sS-Mru" id="Y6s-v0-TkM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kT7-AK-oLd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

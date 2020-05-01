@@ -28,7 +28,7 @@ class PlantDetailsHeaderLayout: UICollectionViewFlowLayout {
                 }
                 
                 let width = collectionView.frame.width
-                let height = attributes.frame.height - contentOffsetY
+                let height = attributes.frame.height //- contentOffsetY
                 
                 attributes.frame = CGRect(x: 0, y: contentOffsetY, width: width, height: height)
                 
