@@ -1,16 +1,23 @@
 //
-//  PlantDetailsHeaderView.swift
+//  PlantImageHeaderView.swift
 //  MyGarden
 //
-//  Created by Никита on 22.04.2020.
+//  Created by Никита on 01.05.2020.
 //  Copyright © 2020 Nikita Ananev. All rights reserved.
 //
 
 import UIKit
 
-class PlantDetailsHeaderView: UICollectionReusableView {
+protocol PlantImageHeaderViewDelegate: class {
+    func presentView(_ view: UIViewController, animated: Bool)
+    func dismissView(animated: Bool)
+}
+
+class PlantImageHeaderView: UICollectionReusableView {
         
     static let reuseId = "PlantDetailsHeaderReuseId"
+    
+    weak var delegate: PlantImageHeaderViewDelegate?
     
     var plantImages: [UIImage] = []
     var collectionImageView: UICollectionView?
@@ -54,7 +61,7 @@ class PlantDetailsHeaderView: UICollectionReusableView {
         
         collectionImageView?.delegate = self
         collectionImageView?.dataSource = self
-        collectionImageView?.register(PlantDetailsHeaderViewCell.self, forCellWithReuseIdentifier: PlantDetailsHeaderViewCell.reuseId)
+        collectionImageView?.register(PlantImageHeaderViewCell.self, forCellWithReuseIdentifier: PlantImageHeaderViewCell.reuseId)
     }
     
     fileprivate func setupLayout() {
@@ -71,6 +78,37 @@ class PlantDetailsHeaderView: UICollectionReusableView {
                           padding: UIEdgeInsets(top: 0, left: 16, bottom: 16, right: 16))
     }
     
+    fileprivate func presentAddImageActionSheet() {
+        let alertController = UIAlertController(title: "Select", message: nil, preferredStyle: .actionSheet)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let fromGalleryAction = UIAlertAction(title: "From gallery", style: .default) { (action) in
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.allowsEditing = true
+            imagePicker.sourceType = .photoLibrary
+            self.delegate?.presentView(imagePicker, animated: true)
+        }
+        
+        let cameraAction = UIAlertAction(title: "Camera", style: .default) { (action) in
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .camera
+            self.delegate?.presentView(imagePicker, animated: true)
+        }
+        
+        let deleteImageAction = UIAlertAction(title: "Delete image", style: .default) { (action) in
+           // TODO: Delete Image
+        }
+        
+        alertController.addAction(fromGalleryAction)
+        alertController.addAction(cameraAction)
+        alertController.addAction(deleteImageAction)
+        alertController.addAction(cancelAction)
+        
+        delegate?.presentView(alertController, animated: true)
+    }
+    
     public func setImages(_ images: [UIImage]?, withTitle title: String) {
         plantImages = images ?? []
         titleLabel.text = title
@@ -78,14 +116,15 @@ class PlantDetailsHeaderView: UICollectionReusableView {
     
 }
 
-extension PlantDetailsHeaderView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+// MARK: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
+extension PlantImageHeaderView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return (plantImages.count != 0) ? plantImages.count : 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PlantDetailsHeaderViewCell.reuseId, for: indexPath) as! PlantDetailsHeaderViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PlantImageHeaderViewCell.reuseId, for: indexPath) as! PlantImageHeaderViewCell
         if plantImages.count == 0 {
             cell.setImage(#imageLiteral(resourceName: "default-plant"))
             
@@ -96,12 +135,31 @@ extension PlantDetailsHeaderView: UICollectionViewDelegateFlowLayout, UICollecti
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presentAddImageActionSheet()
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionImageView!.frame.width, height: collectionImageView!.frame.height)
+    }
+    
+}
+
+// MARK: UIImagePickerControllerDelegate, UINavigationControllerDelegate
+extension PlantImageHeaderView: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.editedImage] as? UIImage else {
+            return
+        }
+        
+        plantImages.append(image)
+        collectionImageView?.reloadData()
+        delegate?.dismissView(animated: true)
     }
     
 }

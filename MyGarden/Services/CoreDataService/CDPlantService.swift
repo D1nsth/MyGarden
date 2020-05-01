@@ -35,13 +35,24 @@ class CDPlantService {
     }
     
     fileprivate func transformPlantToPlantModel(_ plant: Plant) -> PlantModel {
-        // TODO: Images
+        var images: [UIImage]? = nil
+        // Unarchived images
+        if let data = plant.images {
+            do {
+                images = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [UIImage]
+                
+            } catch {
+                print("(CoreData): Failed unarchived images")
+            }
+        }
+        
+        // Create model
         let model = PlantModel(id: Int(plant.id),
                                name: plant.name,
                                // TODO: Kind not optional
                                kind: plant.kind ?? "",
                                description: plant.descriptionPlant,
-                               images: nil)
+                               images: images)
         
         return model
     }
@@ -55,8 +66,15 @@ class CDPlantService {
         plant.name = name
         plant.descriptionPlant = description
         plant.kind = kind
-        // TODO: Images
-        plant.images = nil
+        
+        do {
+            let imagesArchive = try NSKeyedArchiver.archivedData(withRootObject: images!, requiringSecureCoding: false)
+            plant.images = imagesArchive
+            
+        } catch {
+            print("(CoreData): Failed archived images")
+            plant.images = nil
+        }
         
         savePlantContext()
     }
@@ -136,7 +154,17 @@ class CDPlantService {
             if let description = description {
                 plant.descriptionPlant = description
             }
-            // TODO: Images
+            
+            if let images = images {
+                do {
+                    let imagesArchive = try NSKeyedArchiver.archivedData(withRootObject: images, requiringSecureCoding: false)
+                    plant.images = imagesArchive
+                    
+                } catch {
+                    print("(CoreData): Failed archived images for update")
+                }
+            }
+            
             savePlantContext()
         }
     }

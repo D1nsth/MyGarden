@@ -1,14 +1,14 @@
 //
-//  PlantDetailsHeaderViewCell.swift
+//  PlantImageHeaderViewCell.swift
 //  MyGarden
 //
-//  Created by Никита on 28.04.2020.
+//  Created by Никита on 01.05.2020.
 //  Copyright © 2020 Nikita Ananev. All rights reserved.
 //
 
 import UIKit
 
-class PlantDetailsHeaderViewCell: UICollectionViewCell {
+class PlantImageHeaderViewCell: UICollectionViewCell {
     
     static let reuseId = "PlantDetailsHeaderCellReuseId"
     
@@ -43,3 +43,4 @@ class PlantDetailsHeaderViewCell: UICollectionViewCell {
     }
     
 }
+

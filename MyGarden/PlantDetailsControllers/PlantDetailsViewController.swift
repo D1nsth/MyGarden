@@ -81,7 +81,7 @@ class PlantDetailsViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.contentInsetAdjustmentBehavior = .never
         
-        collectionView.register(PlantDetailsHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: PlantDetailsHeaderView.reuseId)
+        collectionView.register(PlantImageHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: PlantImageHeaderView.reuseId)
     }
     
     fileprivate func setupSectionsCell() {
@@ -135,7 +135,7 @@ extension PlantDetailsViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: PlantDetailsHeaderView.reuseId, for: indexPath) as! PlantDetailsHeaderView
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: PlantImageHeaderView.reuseId, for: indexPath) as! PlantImageHeaderView
         
         if let plant = currentPlant {
             let plantName = plant.name ?? ""

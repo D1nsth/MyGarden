@@ -41,7 +41,7 @@ class AddPlantController: UIViewController {
         dataCollectionView.delegate = self
         
         dataCollectionView.contentInsetAdjustmentBehavior = .never
-        dataCollectionView.register(PlantDetailsHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: PlantDetailsHeaderView.reuseId)
+        dataCollectionView.register(PlantImageHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: PlantImageHeaderView.reuseId)
     }
     
     fileprivate func setupNavigationBar() {
@@ -98,7 +98,8 @@ extension AddPlantController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: PlantDetailsHeaderView.reuseId, for: indexPath) as! PlantDetailsHeaderView
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: PlantImageHeaderView.reuseId, for: indexPath) as! PlantImageHeaderView
+        header.delegate = self
         
         if let plant = currentPlant {
             let plantName = plant.name ?? ""
@@ -135,6 +136,18 @@ extension AddPlantController: UICollectionViewDelegateFlowLayout {
         // Animation from custom large navigation bar to default
         customNavBackgroundView.alpha = offset
         navigationController?.navigationBar.tintColor = UIColor(white: (1 - offset), alpha: 1)
+    }
+    
+}
+
+extension AddPlantController: PlantImageHeaderViewDelegate {
+    
+    func presentView(_ view: UIViewController, animated: Bool) {
+        present(view, animated: animated)
+    }
+    
+    func dismissView(animated: Bool) {
+        dismiss(animated: animated, completion: nil)
     }
     
 }
