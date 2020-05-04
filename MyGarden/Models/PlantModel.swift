@@ -14,6 +14,6 @@ struct PlantModel {
     var name: String?
     var kind: String
     var description: String?
-    var images: [UIImage]?
+    var images: [UIImage]
     
 }

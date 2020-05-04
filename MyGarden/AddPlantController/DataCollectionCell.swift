@@ -30,11 +30,15 @@ class DataCollectionCell: UICollectionViewCell {
     }
     
     public func configureCellWith(_ plant: PlantModel?) {
-        if let plant = plant {
-            nameTextField.text = plant.name
-            kindTextField.text = plant.kind
-            descriptionTextField.text = plant.description
+        guard let plant = plant else {
+            print("(DataCollectionCell): Failed get plant")
+            return
         }
+        
+        nameTextField.text = plant.name
+        kindTextField.text = plant.kind
+        descriptionTextField.text = plant.description
+        
     }
     
 }

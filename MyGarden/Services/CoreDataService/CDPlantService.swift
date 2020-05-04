@@ -35,11 +35,11 @@ class CDPlantService {
     }
     
     fileprivate func transformPlantToPlantModel(_ plant: Plant) -> PlantModel {
-        var images: [UIImage]? = nil
+        var images: [UIImage] = []
         // Unarchived images
         if let data = plant.images {
             do {
-                images = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [UIImage]
+                images = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [UIImage] ?? []
                 
             } catch {
                 print("(CoreData): Failed unarchived images")
@@ -57,8 +57,10 @@ class CDPlantService {
         return model
     }
     
+    // TODO: проверка нового uuid
+    
     // MARK: Create
-    public func createPlantWithId(_ id: Int, name: String?, kind: String, description: String?, images: [UIImage]?) {
+    public func createPlantWithId(_ id: Int, name: String?, kind: String, description: String?, images: [UIImage]) {
         let entity = NSEntityDescription.entity(forEntityName: entityName, in: context)
         let plant = NSManagedObject(entity: entity!, insertInto: context) as! Plant
         
@@ -68,7 +70,8 @@ class CDPlantService {
         plant.kind = kind
         
         do {
-            let imagesArchive = try NSKeyedArchiver.archivedData(withRootObject: images!, requiringSecureCoding: false)
+            // Сохранять в файловую систему
+            let imagesArchive = try NSKeyedArchiver.archivedData(withRootObject: images, requiringSecureCoding: false)
             plant.images = imagesArchive
             
         } catch {

@@ -15,6 +15,7 @@ class AddPlantController: UIViewController {
     @IBOutlet weak var customTitleNavLabel: UILabel!
     
     fileprivate let plantService = CDPlantService()
+    fileprivate var newImages: [UIImage] = []
     
     fileprivate var isDarkStatusBar: Bool = false
     var currentPlant: PlantModel?
@@ -68,12 +69,18 @@ class AddPlantController: UIViewController {
             if currentPlant == nil {
                 // create new plant
                 let count = plantService.getCountPlant()
-                // TODO: Images
-                plantService.createPlantWithId(count + 1, name: name, kind: kind, description: description, images: nil)
+                plantService.createPlantWithId(count + 1,
+                                               name: name,
+                                               kind: kind,
+                                               description: description,
+                                               images: newImages)
             } else {
                 // save current plant
-                // TODO: Images
-                plantService.updatePlantWithId(currentPlant!.id, name: name, kind: kind, description: description, images: nil)
+                plantService.updatePlantWithId(currentPlant!.id,
+                                               name: name,
+                                               kind: kind,
+                                               description: description,
+                                               images: currentPlant?.images)
             }
         } else {
             // TODO: Error save
@@ -148,6 +155,14 @@ extension AddPlantController: PlantImageHeaderViewDelegate {
     
     func dismissView(animated: Bool) {
         dismiss(animated: animated, completion: nil)
+    }
+    
+    func addImage(_ image: UIImage) {
+        if currentPlant == nil {
+            newImages.append(image)
+        } else {
+            currentPlant?.images.append(image)
+        }
     }
     
 }

@@ -11,6 +11,8 @@ import UIKit
 protocol PlantImageHeaderViewDelegate: class {
     func presentView(_ view: UIViewController, animated: Bool)
     func dismissView(animated: Bool)
+    
+    func addImage(_ image: UIImage)
 }
 
 class PlantImageHeaderView: UICollectionReusableView {
@@ -21,14 +23,6 @@ class PlantImageHeaderView: UICollectionReusableView {
     
     var plantImages: [UIImage] = []
     var collectionImageView: UICollectionView?
-    
-    let imageView: UIImageView = {
-        let imageView = UIImageView(image: #imageLiteral(resourceName: "default-plant"))
-        imageView.layer.masksToBounds = true
-        imageView.backgroundColor = #colorLiteral(red: 0.737254902, green: 0.7568627451, blue: 0.6980392157, alpha: 1)
-        imageView.contentMode = .scaleAspectFill
-        return imageView
-    }()
 
     let titleLabel: UILabel = {
         let label = UILabel()
@@ -112,6 +106,11 @@ class PlantImageHeaderView: UICollectionReusableView {
     public func setImages(_ images: [UIImage]?, withTitle title: String) {
         plantImages = images ?? []
         titleLabel.text = title
+        collectionImageView?.reloadData()
+    }
+    
+    fileprivate func scrollToEnd() {
+        collectionImageView?.scrollToItem(at: IndexPath(item: plantImages.count - 1, section: 0), at: .right, animated: true)
     }
     
 }
@@ -159,7 +158,9 @@ extension PlantImageHeaderView: UIImagePickerControllerDelegate, UINavigationCon
         
         plantImages.append(image)
         collectionImageView?.reloadData()
+        delegate?.addImage(image)
         delegate?.dismissView(animated: true)
+        scrollToEnd()
     }
     
 }

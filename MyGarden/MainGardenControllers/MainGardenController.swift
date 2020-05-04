@@ -71,7 +71,7 @@ extension MainGardenController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GardenCollectionCell.reuseId, for: indexPath) as! GardenCollectionCell
         
         let plant = plants[indexPath.row]
-        let image = plant.images?.first ?? #imageLiteral(resourceName: "default-plant")
+        let image = plant.images.first ?? #imageLiteral(resourceName: "default-plant")
         let name = plant.name ?? ""
         let titleCell = (name.isEmpty) ? plant.kind : name
         cell.configureCellWith(image, andName: titleCell)

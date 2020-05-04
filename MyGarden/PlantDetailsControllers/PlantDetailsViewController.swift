@@ -100,6 +100,7 @@ class PlantDetailsViewController: UIViewController {
     fileprivate func updateCurrentPlant() {
         if let id = currentPlant?.id {
             currentPlant = plantService.getPlantById(id)
+            collectionView.reloadData()
         }
         //        else {
         // TODO: Failed get id -> pop view controller
@@ -140,7 +141,7 @@ extension PlantDetailsViewController: UICollectionViewDataSource {
         if let plant = currentPlant {
             let plantName = plant.name ?? ""
             let title = (plantName.isEmpty) ? plant.kind : plantName
-            
+
             customTitleNavLabel.text = title
             header.setImages(plant.images, withTitle: title)
         }
