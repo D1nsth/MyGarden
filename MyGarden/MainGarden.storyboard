@@ -37,7 +37,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3Qx-on-Tlc">
-                                <rect key="frame" x="0.0" y="88" width="414" height="744"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewLayout key="collectionViewLayout" id="gDN-o6-fYB" customClass="GardenCollectionFlowLayout" customModule="MyGarden" customModuleProvider="target"/>
                                 <cells>
@@ -78,31 +78,23 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WzG-OG-63A">
-                                <rect key="frame" x="184" y="832" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="hvw-GV-Smu" kind="show" id="iMl-9E-Fds"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="3Qx-on-Tlc" firstAttribute="top" secondItem="9vU-p1-5fY" secondAttribute="top" id="7WA-v5-0c6"/>
                             <constraint firstItem="3Qx-on-Tlc" firstAttribute="leading" secondItem="9vU-p1-5fY" secondAttribute="leading" id="Ecd-1f-SrA"/>
-                            <constraint firstItem="WzG-OG-63A" firstAttribute="centerX" secondItem="9vU-p1-5fY" secondAttribute="centerX" id="JR2-B2-ytG"/>
-                            <constraint firstItem="WzG-OG-63A" firstAttribute="top" secondItem="3Qx-on-Tlc" secondAttribute="bottom" id="QvA-sH-ExD"/>
+                            <constraint firstAttribute="bottom" secondItem="3Qx-on-Tlc" secondAttribute="bottom" id="QCM-aC-DBH"/>
                             <constraint firstItem="9vU-p1-5fY" firstAttribute="trailing" secondItem="3Qx-on-Tlc" secondAttribute="trailing" id="Wrh-ho-SMc"/>
-                            <constraint firstItem="9vU-p1-5fY" firstAttribute="bottom" secondItem="WzG-OG-63A" secondAttribute="bottom" id="oBM-QZ-MuH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9vU-p1-5fY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Water Today" largeTitleDisplayMode="always" id="WzV-Ve-h3H">
+                    <navigationItem key="navigationItem" title="Water Today" id="WzV-Ve-h3H">
                         <barButtonItem key="backBarButtonItem" title=" " id="6Q5-LW-Zyo"/>
                     </navigationItem>
                     <connections>
                         <outlet property="gardenCollectionView" destination="3Qx-on-Tlc" id="rJH-eL-UCq"/>
                         <segue destination="6zN-8U-EHJ" kind="show" identifier="showPlantDetailsSegue" id="zdX-vn-dOA"/>
+                        <segue destination="hvw-GV-Smu" kind="show" identifier="showAddNewPlantSegue" id="pX6-V4-dC9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hsB-cU-VJM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -119,7 +111,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bgG-SE-gCd">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewLayout key="collectionViewLayout" id="ZJn-ut-Fks" customClass="PlantDetailsHeaderLayout" customModule="MyGarden" customModuleProvider="target"/>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="dataCollectionCellReuseId" id="DLW-YJ-5uL" customClass="DataCollectionCell" customModule="MyGarden" customModuleProvider="target">
@@ -301,7 +293,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2kW-fq-0WY">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewLayout key="collectionViewLayout" id="lXC-eO-8Nh" customClass="PlantDetailsHeaderLayout" customModule="MyGarden" customModuleProvider="target"/>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="detailsCollectionCellReuseId" id="wld-br-yyi" customClass="PlantDetailsCollectionCell" customModule="MyGarden" customModuleProvider="target">
@@ -402,7 +394,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="iLe-8Y-CFX"/>
+        <segue reference="pX6-V4-dC9"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="plant" width="600" height="220"/>

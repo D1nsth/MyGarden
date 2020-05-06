@@ -10,4 +10,36 @@ import UIKit
 
 class GardenCollectionFlowLayout: UICollectionViewFlowLayout {
     
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        let layoutAttributes = super.layoutAttributesForElements(in: rect)
+        
+        layoutAttributes?.forEach({ (attributes) in
+            
+            if attributes.representedElementKind == UICollectionView.elementKindSectionHeader {
+                
+            guard let collectionView = collectionView else {
+                return
+                }
+                
+                let contentOffsetY = collectionView.contentOffset.y
+                
+                if contentOffsetY < 158 {
+                    return
+                }
+
+                let width = collectionView.frame.width
+                let height = attributes.frame.height
+                // TODO: Contant (heightCell - heightButton - topAnchor - bottomAnchor)
+                let yPosition = contentOffsetY - (240 - 50 - 16 - 16)
+                attributes.frame = CGRect(x: 0, y: yPosition, width: width, height: height)
+            }
+        })
+        
+        return layoutAttributes
+    }
+    
+    override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+        return true
+    }
+    
 }

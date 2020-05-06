@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="mainGardenHeaderReuseId" id="KQ7-up-Vya" customClass="MainGardenHeaderView" customModule="MyGarden" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="255"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="epm-ZA-XjY">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="255"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gLg-fc-SzY">
+                            <rect key="frame" x="16" y="189" width="382" height="50"/>
+                            <color key="backgroundColor" red="0.21176470589999999" green="0.68235294120000001" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="o3N-XG-n6U"/>
+                            </constraints>
+                            <state key="normal" title="Button">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="addPlantButtonTapped:" destination="KQ7-up-Vya" eventType="touchUpInside" id="sDt-re-Wk0"/>
+                            </connections>
+                        </button>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="R3k-57-D0C">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="173"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ed8-Zy-Dw3">
+                                <size key="itemSize" width="128" height="128"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                        </collectionView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="R3k-57-D0C" firstAttribute="top" secondItem="epm-ZA-XjY" secondAttribute="top" id="8I1-uD-a77"/>
+                        <constraint firstItem="R3k-57-D0C" firstAttribute="leading" secondItem="epm-ZA-XjY" secondAttribute="leading" id="KDW-33-bif"/>
+                        <constraint firstItem="gLg-fc-SzY" firstAttribute="top" secondItem="R3k-57-D0C" secondAttribute="bottom" constant="16" id="cZn-8j-5yM"/>
+                        <constraint firstAttribute="bottom" secondItem="gLg-fc-SzY" secondAttribute="bottom" constant="16" id="jed-bI-E9I"/>
+                        <constraint firstItem="gLg-fc-SzY" firstAttribute="leading" secondItem="epm-ZA-XjY" secondAttribute="leading" constant="16" id="k2Z-vF-9Pb"/>
+                        <constraint firstAttribute="trailing" secondItem="gLg-fc-SzY" secondAttribute="trailing" constant="16" id="pT1-HE-rUw"/>
+                        <constraint firstAttribute="trailing" secondItem="R3k-57-D0C" secondAttribute="trailing" id="tId-wA-bw5"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="d8q-RG-TWd" firstAttribute="trailing" secondItem="epm-ZA-XjY" secondAttribute="trailing" id="6PN-pt-ZHH"/>
+                <constraint firstItem="d8q-RG-TWd" firstAttribute="bottom" secondItem="epm-ZA-XjY" secondAttribute="bottom" id="7fX-pA-izG"/>
+                <constraint firstItem="epm-ZA-XjY" firstAttribute="leading" secondItem="d8q-RG-TWd" secondAttribute="leading" id="Jpu-u3-2AD"/>
+                <constraint firstItem="epm-ZA-XjY" firstAttribute="top" secondItem="d8q-RG-TWd" secondAttribute="top" id="c6J-3b-o93"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="d8q-RG-TWd"/>
+            <connections>
+                <outlet property="addPlantButton" destination="gLg-fc-SzY" id="JwJ-mQ-rOJ"/>
+                <outlet property="plantsCollectionView" destination="R3k-57-D0C" id="A6I-KC-f4a"/>
+            </connections>
+            <point key="canvasLocation" x="-10.144927536231885" y="-207.47282608695653"/>
+        </collectionReusableView>
+    </objects>
+</document>
