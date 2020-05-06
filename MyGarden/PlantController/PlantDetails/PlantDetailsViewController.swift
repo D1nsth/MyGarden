@@ -138,13 +138,15 @@ extension PlantDetailsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: PlantImageHeaderView.reuseId, for: indexPath) as! PlantImageHeaderView
         
-        if let plant = currentPlant {
-            let plantName = plant.name ?? ""
-            let title = (plantName.isEmpty) ? plant.kind : plantName
-
-            customTitleNavLabel.text = title
-            header.setImages(plant.images, withTitle: title)
+        guard let plant = currentPlant else {
+            return header
         }
+        
+        let plantName = plant.name ?? ""
+        let title = (plantName.isEmpty) ? plant.kind : plantName
+        
+        customTitleNavLabel.text = title
+        header.setImages(plant.images, withTitle: title)
         
         return header
     }
@@ -155,8 +157,16 @@ extension PlantDetailsViewController: UICollectionViewDataSource {
 extension PlantDetailsViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        // TODO: Высчитывать высоту динамически
-        return .init(width: view.frame.width, height: 373)
+        
+        guard let plant = currentPlant else {
+            return .init(width: view.frame.width, height: 0)
+        }
+        
+        let textCell = (sections[indexPath.row] == .kind) ? plant.kind : plant.description
+        let height = textCell?.height(width: view.frame.width - 32,
+                                      font: UIFont.systemFont(ofSize: 20)) ?? 0
+        //                                                     bottomAnc + topAnc + heightTitleLabel
+        return .init(width: view.frame.width, height: height + 10 + 10 + 20)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
