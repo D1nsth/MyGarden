@@ -22,6 +22,7 @@
 		DF64E76D2458E5FC00D579BF /* Plant+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF64E76B2458E5FC00D579BF /* Plant+CoreDataClass.swift */; };
 		DF64E76E2458E5FC00D579BF /* Plant+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF64E76C2458E5FC00D579BF /* Plant+CoreDataProperties.swift */; };
 		DF64E7722458E64200D579BF /* CDPlantService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF64E7712458E64200D579BF /* CDPlantService.swift */; };
+		DF98D27D246424C9008247EF /* MainGardenHeaderCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF98D27C246424C9008247EF /* MainGardenHeaderCollectionCell.swift */; };
 		DF9DF4A92461C0AF008350B5 /* MainGardenHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9DF4A82461C0AF008350B5 /* MainGardenHeaderView.swift */; };
 		DF9DF4AB2462AF22008350B5 /* MainGardenHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF9DF4AA2462AF22008350B5 /* MainGardenHeaderView.xib */; };
 		DFBF5EBB2452B7F0007DC0BE /* PlantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBF5EBA2452B7F0007DC0BE /* PlantModel.swift */; };
@@ -56,6 +57,7 @@
 		DF64E76B2458E5FC00D579BF /* Plant+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Plant+CoreDataClass.swift"; sourceTree = "<group>"; };
 		DF64E76C2458E5FC00D579BF /* Plant+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Plant+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DF64E7712458E64200D579BF /* CDPlantService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDPlantService.swift; sourceTree = "<group>"; };
+		DF98D27C246424C9008247EF /* MainGardenHeaderCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGardenHeaderCollectionCell.swift; sourceTree = "<group>"; };
 		DF9DF4A82461C0AF008350B5 /* MainGardenHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGardenHeaderView.swift; sourceTree = "<group>"; };
 		DF9DF4AA2462AF22008350B5 /* MainGardenHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainGardenHeaderView.xib; sourceTree = "<group>"; };
 		DFBF5EBA2452B7F0007DC0BE /* PlantModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantModel.swift; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 			children = (
 				DF9DF4AA2462AF22008350B5 /* MainGardenHeaderView.xib */,
 				DF9DF4A82461C0AF008350B5 /* MainGardenHeaderView.swift */,
+				DF98D27C246424C9008247EF /* MainGardenHeaderCollectionCell.swift */,
 			);
 			path = MainGardenHeader;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				DFD8BB6E2463584C0022D235 /* String + height.swift in Sources */,
 				DFF0DA8F2450923A0073EA2D /* PlantDetailsViewController.swift in Sources */,
 				DF64E7722458E64200D579BF /* CDPlantService.swift in Sources */,
+				DF98D27D246424C9008247EF /* MainGardenHeaderCollectionCell.swift in Sources */,
 				DFF0DA93245092730073EA2D /* PlantDetailsHeaderLayout.swift in Sources */,
 				DFBF5EC22452C3CD007DC0BE /* PlantDetailsCollectionCell.swift in Sources */,
 				DF56D093245BC94D00929281 /* PlantImageHeaderView.swift in Sources */,

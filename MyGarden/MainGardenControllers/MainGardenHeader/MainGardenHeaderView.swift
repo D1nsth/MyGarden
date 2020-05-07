@@ -17,6 +17,7 @@ class MainGardenHeaderView: UICollectionReusableView {
     static let reuseId = "mainGardenHeaderReuseId"
     static let nib = UINib(nibName: String(describing: MainGardenHeaderView.self), bundle: nil)
     
+    @IBOutlet weak var noPlantToWaterLabel: UILabel!
     @IBOutlet weak var plantsCollectionView: UICollectionView!
     @IBOutlet weak var addPlantButton: UIButton!
     
@@ -25,12 +26,43 @@ class MainGardenHeaderView: UICollectionReusableView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        configurateCellUI()
+        configurateConllectionView()
+    }
+    
+    fileprivate func configurateCellUI() {
         addPlantButton.layer.cornerRadius = Constants.buttonCornerRadius
-        plantsCollectionView.backgroundColor = #colorLiteral(red: 0.9450980392, green: 0.9450980392, blue: 0.9450980392, alpha: 1)
+        plantsCollectionView.backgroundColor = .white
+        noPlantToWaterLabel.alpha = 1.0
+    }
+    
+    fileprivate func configurateConllectionView() {
+        plantsCollectionView.register(MainGardenHeaderCollectionCell.self, forCellWithReuseIdentifier: MainGardenHeaderCollectionCell.reuseId)
+        plantsCollectionView.delegate = self
+        plantsCollectionView.dataSource = self
     }
     
     @IBAction func addPlantButtonTapped(_ sender: UIButton) {
         delegate?.addNewPlant()
+    }
+    
+}
+
+extension MainGardenHeaderView: UICollectionViewDelegateFlowLayout {
+    
+}
+
+extension MainGardenHeaderView: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainGardenHeaderCollectionCell.reuseId, for: indexPath) as! MainGardenHeaderCollectionCell
+        
+        
+        return cell
     }
     
 }
