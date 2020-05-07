@@ -33,6 +33,7 @@
 		DFD8BB70246379D30022D235 /* PlantImageHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFD8BB6F246379D30022D235 /* PlantImageHeaderView.xib */; };
 		DFD8BB7224638CAB0022D235 /* AddPlantKeyboardNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD8BB7124638CAB0022D235 /* AddPlantKeyboardNotification.swift */; };
 		DFD8BB76246395580022D235 /* AddPlantFooterViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD8BB75246395580022D235 /* AddPlantFooterViewCell.swift */; };
+		DFD8BB7824639E540022D235 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD8BB7724639E540022D235 /* Constants.swift */; };
 		DFF0DA8F2450923A0073EA2D /* PlantDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF0DA8E2450923A0073EA2D /* PlantDetailsViewController.swift */; };
 		DFF0DA93245092730073EA2D /* PlantDetailsHeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF0DA92245092730073EA2D /* PlantDetailsHeaderLayout.swift */; };
 /* End PBXBuildFile section */
@@ -66,6 +67,7 @@
 		DFD8BB6F246379D30022D235 /* PlantImageHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlantImageHeaderView.xib; sourceTree = "<group>"; };
 		DFD8BB7124638CAB0022D235 /* AddPlantKeyboardNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlantKeyboardNotification.swift; sourceTree = "<group>"; };
 		DFD8BB75246395580022D235 /* AddPlantFooterViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlantFooterViewCell.swift; sourceTree = "<group>"; };
+		DFD8BB7724639E540022D235 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		DFF0DA8E2450923A0073EA2D /* PlantDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantDetailsViewController.swift; sourceTree = "<group>"; };
 		DFF0DA92245092730073EA2D /* PlantDetailsHeaderLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantDetailsHeaderLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -188,6 +190,7 @@
 		DF64E7642458D94D00D579BF /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				DFD8BB7724639E540022D235 /* Constants.swift */,
 				DF64E7652458D96E00D579BF /* Constraints.swift */,
 				DFD8BB6D2463584C0022D235 /* String + height.swift */,
 			);
@@ -333,6 +336,7 @@
 				DF0CDAF024507EA700B5AE2A /* GardenCollectionCell.swift in Sources */,
 				DF55D8FE245300460092A893 /* CustomNavigationController.swift in Sources */,
 				DF9DF4A92461C0AF008350B5 /* MainGardenHeaderView.swift in Sources */,
+				DFD8BB7824639E540022D235 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

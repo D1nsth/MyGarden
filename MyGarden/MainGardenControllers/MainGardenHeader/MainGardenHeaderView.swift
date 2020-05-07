@@ -25,7 +25,7 @@ class MainGardenHeaderView: UICollectionReusableView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        addPlantButton.layer.cornerRadius = 16
+        addPlantButton.layer.cornerRadius = Constants.buttonCornerRadius
         plantsCollectionView.backgroundColor = #colorLiteral(red: 0.9450980392, green: 0.9450980392, blue: 0.9450980392, alpha: 1)
     }
     

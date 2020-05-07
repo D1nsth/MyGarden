@@ -143,19 +143,19 @@ extension AddPlantController: UICollectionViewDataSource {
 extension AddPlantController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: view.frame.width, height: 258)
+        return .init(width: view.frame.width, height: Constants.addPlantItemHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return .init(width: view.frame.width, height: 340)
+        return .init(width: view.frame.width, height: Constants.headerImageHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return .init(width: view.frame.width, height: 82)
+        return .init(width: view.frame.width, height: Constants.footerAddPlantHeight)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        var offset = ((scrollView.contentOffset.y / 170) - 1.2) * 5
+        var offset = ((scrollView.contentOffset.y / (Constants.headerImageHeight / 2)) - 1.2) * 5
         offset = (offset < 0) ? 0 : offset
         offset = min(offset, 1)
         

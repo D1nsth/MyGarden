@@ -20,7 +20,6 @@ class PlantDetailsViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     fileprivate let editDetailsSegueId = "editPlantDetailsSegue"
-    fileprivate let paddingCollectionCell: CGFloat = 16
     fileprivate let plantService = CDPlantService()
     
     fileprivate var isDarkStatusBar: Bool = false
@@ -69,10 +68,7 @@ class PlantDetailsViewController: UIViewController {
     fileprivate func setupCollectionViewLayout() {
         // layout customization
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.sectionInset = .init(top: paddingCollectionCell,
-                                        left: paddingCollectionCell,
-                                        bottom: paddingCollectionCell,
-                                        right: paddingCollectionCell)
+            layout.sectionInset = Constants.mainInsets
         }
     }
     
@@ -163,18 +159,19 @@ extension PlantDetailsViewController: UICollectionViewDelegateFlowLayout {
         }
         
         let textCell = (sections[indexPath.row] == .kind) ? plant.kind : plant.description
-        let height = textCell?.height(width: view.frame.width - 32,
-                                      font: UIFont.systemFont(ofSize: 20)) ?? 0
-        //                                                     bottomAnc + topAnc + heightTitleLabel
+        let widthText = view.frame.width - Constants.mainInsets.left - Constants.mainInsets.right
+        let height = textCell?.height(width: widthText,
+                                      font: Constants.descriptionFont) ?? 0
+        //                                       bottomAnchor + topAnchor + heightTitleLabel
         return .init(width: view.frame.width, height: height + 10 + 10 + 20)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return .init(width: view.frame.width, height: 340)
+        return .init(width: view.frame.width, height: Constants.headerImageHeight)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        var offset = ((scrollView.contentOffset.y / 170) - 1.2) * 5
+        var offset = ((scrollView.contentOffset.y / (Constants.headerImageHeight / 2)) - 1.2) * 5
         offset = (offset < 0) ? 0 : offset
         offset = min(offset, 1)
         

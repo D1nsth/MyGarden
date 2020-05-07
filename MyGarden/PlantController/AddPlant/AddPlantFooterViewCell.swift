@@ -21,7 +21,7 @@ class AddPlantFooterViewCell: UICollectionReusableView {
        let button = UIButton()
         button.setTitle("Delete plant", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 16
+        button.layer.cornerRadius = Constants.buttonCornerRadius
         button.backgroundColor = #colorLiteral(red: 0.8305622329, green: 0.05539893594, blue: 0.07002168258, alpha: 1)
         
         return button
@@ -44,7 +44,7 @@ class AddPlantFooterViewCell: UICollectionReusableView {
                                  leading: leadingAnchor,
                                  bottom: bottomAnchor,
                                  trailing: trailingAnchor,
-                                 padding: UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16))
+                                 padding: Constants.mainInsets)
     }
     
     @objc fileprivate func deletePlantButtonTapped() {

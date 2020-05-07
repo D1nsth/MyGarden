@@ -14,7 +14,6 @@ class MainGardenController: UIViewController {
     
     fileprivate let showDetailsSegueId = "showPlantDetailsSegue"
     fileprivate let showAddPlantSegueId = "showAddNewPlantSegue"
-    fileprivate let paddingCollectionCell: CGFloat = 16
     fileprivate let plantService = CDPlantService()
     
     fileprivate var plants: [PlantModel] = []
@@ -47,7 +46,10 @@ class MainGardenController: UIViewController {
     
     fileprivate func setupCollectionLayout() {
         if let layout = gardenCollectionView.collectionViewLayout as? GardenCollectionFlowLayout {
-            layout.sectionInset = .init(top: 0, left: 16, bottom: 16, right: 16)
+            layout.sectionInset = .init(top: 0,
+                                        left: Constants.mainInsets.left,
+                                        bottom: Constants.mainInsets.bottom,
+                                        right: Constants.mainInsets.right)
         }
     }
     
@@ -88,7 +90,7 @@ extension MainGardenController: UICollectionViewDataSource {
         let name = plant.name ?? ""
         let titleCell = (name.isEmpty) ? plant.kind : name
         cell.configureCellWith(image, andName: titleCell)
-        cell.layer.cornerRadius = 16
+        cell.layer.cornerRadius = Constants.buttonCornerRadius
         
         return cell
     }
@@ -110,11 +112,11 @@ extension MainGardenController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return .init(width: view.frame.width, height: 240)
+        return .init(width: view.frame.width, height: Constants.mainGardenHeaderHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = view.frame.width / 2 - 24
+        let width = view.frame.width / 2 - (Constants.mainInsets.left + Constants.mainInsets.right)
         return .init(width: width, height: width * 1.3)
     }
     

@@ -30,7 +30,9 @@ class GardenCollectionFlowLayout: UICollectionViewFlowLayout {
                 let width = collectionView.frame.width
                 let height = attributes.frame.height
                 // TODO: Contant (heightCell - heightButton - topAnchor - bottomAnchor)
-                let yPosition = contentOffsetY - (240 - 50 - 16 - 16)
+                let yPosition = contentOffsetY -
+                    (Constants.mainGardenHeaderHeight - Constants.mainButtonHeight -
+                        Constants.mainInsets.top - Constants.mainInsets.bottom)
                 attributes.frame = CGRect(x: 0, y: yPosition, width: width, height: height)
             }
         })
