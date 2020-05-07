@@ -42,6 +42,7 @@ class PlantImageHeaderView: UICollectionReusableView {
     }
     
     fileprivate func presentAddImageActionSheet() {
+        // TODO: rename
         let alertController = UIAlertController(title: "Select", message: nil, preferredStyle: .actionSheet)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -56,11 +57,12 @@ class PlantImageHeaderView: UICollectionReusableView {
         let cameraAction = UIAlertAction(title: "Camera", style: .default) { (action) in
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
+            imagePicker.allowsEditing = true
             imagePicker.sourceType = .camera
             self.delegate?.presentView(imagePicker, animated: true)
         }
 
-        let deleteImageAction = UIAlertAction(title: "Delete image", style: .default) { [weak self] (action) in
+        let deleteImageAction = UIAlertAction(title: "Delete image", style: .destructive) { [weak self] (action) in
             let cell = self?.collectionImageView.visibleCells.first as! PlantImageHeaderViewCell
             guard let image = cell.getImage() else {
                 print("(PlantImageHeaderView): Failed get image")
@@ -135,6 +137,9 @@ extension PlantImageHeaderView: UIImagePickerControllerDelegate, UINavigationCon
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.editedImage] as? UIImage else {
+            print("(PlantImageHeaderView): Failed get edited image")
+            // TODO: Present alert with error
+            delegate?.dismissView(animated: true)
             return
         }
         

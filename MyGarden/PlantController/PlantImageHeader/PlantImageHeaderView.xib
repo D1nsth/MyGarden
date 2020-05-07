@@ -49,13 +49,13 @@
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="Iou-2g-pVe" secondAttribute="trailing" constant="16" id="65v-Lf-BCU"/>
                         <constraint firstAttribute="bottom" secondItem="kfU-nm-ao3" secondAttribute="bottom" id="6UT-FM-RT1"/>
-                        <constraint firstItem="Iou-2g-pVe" firstAttribute="centerY" secondItem="cQF-Ya-nke" secondAttribute="centerY" id="Hh3-qs-BSO"/>
                         <constraint firstItem="kfU-nm-ao3" firstAttribute="leading" secondItem="JNI-Rf-A4o" secondAttribute="leading" id="I5Z-jX-2dB"/>
                         <constraint firstItem="kfU-nm-ao3" firstAttribute="top" secondItem="JNI-Rf-A4o" secondAttribute="top" id="N53-J9-kUg"/>
                         <constraint firstItem="cQF-Ya-nke" firstAttribute="leading" secondItem="JNI-Rf-A4o" secondAttribute="leading" constant="16" id="fU7-Za-uJV"/>
                         <constraint firstAttribute="trailing" secondItem="kfU-nm-ao3" secondAttribute="trailing" id="hwz-Es-7rU"/>
                         <constraint firstAttribute="bottom" secondItem="cQF-Ya-nke" secondAttribute="bottom" constant="16" id="j2S-fI-ipn"/>
                         <constraint firstItem="Iou-2g-pVe" firstAttribute="leading" secondItem="cQF-Ya-nke" secondAttribute="trailing" constant="5" id="jZe-Vm-PST"/>
+                        <constraint firstAttribute="bottom" secondItem="Iou-2g-pVe" secondAttribute="bottom" constant="11.5" id="wqr-9b-zUi"/>
                     </constraints>
                 </view>
             </subviews>

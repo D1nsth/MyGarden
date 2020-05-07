@@ -47,6 +47,7 @@ class AddPlantController: UIViewController {
         dataCollectionView.delegate = self
         
         dataCollectionView.contentInsetAdjustmentBehavior = .never
+        dataCollectionView.register(AddPlantFooterViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: AddPlantFooterViewCell.reuseId)
         dataCollectionView.register(PlantImageHeaderView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: PlantImageHeaderView.reuseId)
     }
     
@@ -96,6 +97,7 @@ class AddPlantController: UIViewController {
     
 }
 
+// MARK: UICollectionViewDataSource
 extension AddPlantController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -110,22 +112,34 @@ extension AddPlantController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: PlantImageHeaderView.reuseId, for: indexPath) as! PlantImageHeaderView
-        header.delegate = self
-        
-        if let plant = currentPlant {
+        // configure header view
+        if kind == UICollectionView.elementKindSectionHeader {
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: PlantImageHeaderView.reuseId, for: indexPath) as! PlantImageHeaderView
+            header.delegate = self
+            
+            guard let plant = currentPlant else {
+                return header
+            }
+            
             let plantName = plant.name ?? ""
             let title = (plantName.isEmpty) ? plant.kind : plantName
-            
             customTitleNavLabel.text = title
             header.setImages(plant.images, withTitle: title, isActions: true)
+            
+            return header
+            
+        // configure footer view
+        } else {
+            let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: AddPlantFooterViewCell.reuseId, for: indexPath) as! AddPlantFooterViewCell
+            footer.delegate = self
+            
+            return footer
         }
-        
-        return header
     }
     
 }
 
+// MARK: UICollectionViewDelegateFlowLayout
 extension AddPlantController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -134,6 +148,10 @@ extension AddPlantController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return .init(width: view.frame.width, height: 340)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return .init(width: view.frame.width, height: 82)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -152,6 +170,7 @@ extension AddPlantController: UICollectionViewDelegateFlowLayout {
     
 }
 
+// MARK: PlantImageHeaderViewDelegate
 extension AddPlantController: PlantImageHeaderViewDelegate {
     
     func presentView(_ view: UIViewController, animated: Bool) {
@@ -178,6 +197,22 @@ extension AddPlantController: PlantImageHeaderViewDelegate {
         
         currentPlant?.images.remove(at: indexImage)
         plantService.updatePlantWithId(id, images: currentPlant?.images)
+    }
+    
+}
+
+// MARK: AddPlantFooterDelegate
+extension AddPlantController: AddPlantFooterDelegate {
+    
+    func deletePlant() {
+        guard let id = currentPlant?.id else {
+            print("(AddPlantController): Failed get id for delete")
+            return
+        }
+        
+        plantService.deletePlantBy(id)
+        navigationController?.popToRootViewController(animated: true)
+//        navigationController?.popViewController(animated: true)
     }
     
 }

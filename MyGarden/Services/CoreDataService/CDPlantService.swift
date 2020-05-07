@@ -172,6 +172,27 @@ class CDPlantService {
         }
     }
     
+    // MARK: Delete
+    public func deletePlantBy(_ id: Int) {
+        let predicate = NSPredicate(format: "id == %@", "\(id)")
+        let request = getFetchRequest(with: predicate)
+        
+        do {
+            let plants = try context.fetch(request)
+            guard let firstPlant = plants.first else {
+                print("(CoreData): Failed get first plant for delete")
+                return
+            }
+            
+            context.delete(firstPlant as NSManagedObject)
+            
+        } catch {
+            print("(CoreData): Failed delete plant")
+        }
+        
+        savePlantContext()
+    }
+    
     // MARK: Save
     fileprivate func savePlantContext() {
         do {
