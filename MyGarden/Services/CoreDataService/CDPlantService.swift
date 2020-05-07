@@ -60,11 +60,16 @@ class CDPlantService {
     // TODO: проверка нового uuid
     
     // MARK: Create
-    public func createPlantWithId(_ id: Int, name: String?, kind: String, description: String?, images: [UIImage]) {
+    public func createPlantWithName(name: String?, kind: String, description: String?, images: [UIImage]) {
         let entity = NSEntityDescription.entity(forEntityName: entityName, in: context)
         let plant = NSManagedObject(entity: entity!, insertInto: context) as! Plant
+        let newId = getNewId()
         
-        plant.id = Int16(id)
+        guard let id = newId else {
+            return
+        }
+        
+        plant.id = id
         plant.name = name
         plant.descriptionPlant = description
         plant.kind = kind
@@ -80,6 +85,23 @@ class CDPlantService {
         }
         
         savePlantContext()
+    }
+    
+    public func getNewId() -> Int32? {
+        let date = Date()
+        let calendare = Calendar.current
+        let resultString = String(describing: calendare.component(.day, from: date)) +
+                            String(describing: calendare.component(.month, from: date)) +
+                            String(describing: calendare.component(.hour, from: date)) +
+                            String(describing: calendare.component(.minute, from: date)) +
+                            String(describing: calendare.component(.second, from: date))
+        
+        guard let result = Int32(resultString) else {
+            print("(CoreData): Failed create id")
+            return nil
+        }
+        
+        return result
     }
     
     // MARK: Read
@@ -201,4 +223,5 @@ class CDPlantService {
             print("(CoreData): Failed save plant context")
         }
     }
+    
 }

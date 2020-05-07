@@ -17,7 +17,7 @@ extension Plant {
         return NSFetchRequest<Plant>(entityName: "Plant")
     }
 
-    @NSManaged public var id: Int16
+    @NSManaged public var id: Int32
     @NSManaged public var name: String?
     @NSManaged public var kind: String?
     @NSManaged public var descriptionPlant: String?

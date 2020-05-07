@@ -74,12 +74,10 @@ class AddPlantController: UIViewController {
             
             if currentPlant == nil {
                 // create new plant
-                let count = plantService.getCountPlant()
-                plantService.createPlantWithId(count + 1,
-                                               name: name,
-                                               kind: kind,
-                                               description: description,
-                                               images: newImages)
+                plantService.createPlantWithName(name: name,
+                                                 kind: kind,
+                                                 description: description,
+                                                 images: newImages)
             } else {
                 // save current plant
                 plantService.updatePlantWithId(currentPlant!.id,
