@@ -52,7 +52,10 @@ class MainGardenController: UIViewController {
     }
     
     fileprivate func updateNavigationBar() {
-        navigationController?.navigationBar.tintColor = .black
+        if let navigationBar = navigationController?.navigationBar {
+            navigationBar.tintColor = .black
+            navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.black]
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
