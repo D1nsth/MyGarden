@@ -6,8 +6,10 @@
         <attribute name="images" attributeType="Binary" customClassName="[Data]"/>
         <attribute name="kind" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
+        <attribute name="nextWateringDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="waterSchedule" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <elements>
-        <element name="Plant" positionX="-63" positionY="-18" width="128" height="118"/>
+        <element name="Plant" positionX="-63" positionY="-18" width="128" height="148"/>
     </elements>
 </model>

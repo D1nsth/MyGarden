@@ -26,6 +26,10 @@ class PlantDetailsCollectionCell: UICollectionViewCell {
         case .description:
             titleCellLabel.text = "Description"
             textForCellLabel.text = plant.description
+            
+        case .waterSchedule:
+            titleCellLabel.text = "Water Schedule"
+            textForCellLabel.text = PlantModel.scheduleWaterData[Int(plant.waterSchedule - 1)]
         }
         
     }

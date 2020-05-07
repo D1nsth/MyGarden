@@ -13,6 +13,7 @@ class PlantDetailsViewController: UIViewController {
     public enum SectionsDetails {
         case kind
         case description
+        case waterSchedule
     }
     
     @IBOutlet weak var customNavBackgroundView: UIView!
@@ -23,7 +24,7 @@ class PlantDetailsViewController: UIViewController {
     fileprivate let plantService = CDPlantService()
     
     fileprivate var isDarkStatusBar: Bool = false
-    fileprivate var sections: [SectionsDetails] = [.kind, .description]
+    fileprivate var sections: [SectionsDetails] = [.kind, .description, .waterSchedule]
     
     var currentPlant: PlantModel?
     
@@ -81,7 +82,7 @@ class PlantDetailsViewController: UIViewController {
     }
     
     fileprivate func setupSectionsCell() {
-        sections = [.kind, .description]
+        sections = [.kind, .description, .waterSchedule]
         
         if let descriptionPlant = currentPlant?.description {
             if descriptionPlant.isEmpty {
@@ -97,10 +98,11 @@ class PlantDetailsViewController: UIViewController {
         if let id = currentPlant?.id {
             currentPlant = plantService.getPlantById(id)
             collectionView.reloadData()
+            
+        } else {
+            print("(PlantDetailsViewController): Failed get id for update current plant ")
+            navigationController?.popViewController(animated: true)
         }
-        //        else {
-        // TODO: Failed get id -> pop view controller
-        //        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -22,5 +22,6 @@ extension Plant {
     @NSManaged public var kind: String?
     @NSManaged public var descriptionPlant: String?
     @NSManaged public var images: Data?
-
+    @NSManaged public var waterSchedule: Int16
+    @NSManaged public var nextWateringDate: Date
 }

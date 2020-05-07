@@ -15,7 +15,7 @@ struct Constants {
     static let mainInsets = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
     
     static let headerImageHeight: CGFloat = 340
-    static let addPlantItemHeight: CGFloat = 258
+    static let addPlantItemHeight: CGFloat = 355
     static let footerAddPlantHeight: CGFloat = mainButtonHeight + mainInsets.top + mainInsets.bottom
     
     static let buttonCornerRadius: CGFloat = 16

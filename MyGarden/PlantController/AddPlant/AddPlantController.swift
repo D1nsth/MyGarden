@@ -68,29 +68,8 @@ class AddPlantController: UIViewController {
     
     @IBAction func savePlantTapped(_ sender: Any) {
         if let cell = dataCollectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? DataCollectionCell {
-            let name = cell.getName()
-            let kind = cell.getKind()
-            let description = cell.getDescription()
-            
-            if currentPlant == nil {
-                // create new plant
-                plantService.createPlantWithName(name: name,
-                                                 kind: kind,
-                                                 description: description,
-                                                 images: newImages)
-            } else {
-                // save current plant
-                plantService.updatePlantWithId(currentPlant!.id,
-                                               name: name,
-                                               kind: kind,
-                                               description: description,
-                                               images: currentPlant?.images)
-            }
-        } else {
-            // TODO: Error save
+            cell.checkTextFields()
         }
-        
-        navigationController?.popViewController(animated: true)
     }
     
 }
@@ -105,6 +84,7 @@ extension AddPlantController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DataCollectionCell.reuseId, for: indexPath) as! DataCollectionCell
         cell.configureCellWith(currentPlant)
+        cell.delegate = self
         
         return cell
     }
@@ -164,6 +144,49 @@ extension AddPlantController: UICollectionViewDelegateFlowLayout {
         // Animation from custom large navigation bar to default
         customNavBackgroundView.alpha = offset
         navigationController?.navigationBar.tintColor = UIColor(white: (1 - offset), alpha: 1)
+    }
+    
+}
+
+extension AddPlantController: DataCollectionCellDelegate {
+    
+    func showAlertWith(_ title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func savePlant() {
+        guard let cell = dataCollectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? DataCollectionCell else {
+            return
+        }
+        
+        let name = cell.getName()
+        let kind = cell.getKind()
+        let description = cell.getDescription()
+        let scheduleDay = cell.getScheduleDay()
+        
+        if currentPlant == nil {
+            // create new plant
+            // TODO: nextWateringDate
+            plantService.createPlantWithName(name: name,
+                                             kind: kind,
+                                             description: description,
+                                             images: newImages,
+                                             waterSchedule: scheduleDay,
+                                             nextWateringDate: Date.distantPast)
+        } else {
+            // save current plant
+            plantService.updatePlantWithId(currentPlant!.id,
+                                           name: name,
+                                           kind: kind,
+                                           description: description,
+                                           images: currentPlant?.images,
+                                           waterShedule: scheduleDay)
+        }
+        
+        navigationController?.popViewController(animated: true)
     }
     
 }

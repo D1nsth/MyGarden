@@ -49,18 +49,17 @@ class CDPlantService {
         // Create model
         let model = PlantModel(id: Int(plant.id),
                                name: plant.name,
-                               // TODO: Kind not optional
                                kind: plant.kind ?? "",
                                description: plant.descriptionPlant,
-                               images: images)
+                               images: images,
+                               waterSchedule: plant.waterSchedule,
+                               nextWateringDate: plant.nextWateringDate)
         
         return model
     }
     
-    // TODO: проверка нового uuid
-    
     // MARK: Create
-    public func createPlantWithName(name: String?, kind: String, description: String?, images: [UIImage]) {
+    public func createPlantWithName(name: String?, kind: String, description: String?, images: [UIImage], waterSchedule: Int16, nextWateringDate: Date) {
         let entity = NSEntityDescription.entity(forEntityName: entityName, in: context)
         let plant = NSManagedObject(entity: entity!, insertInto: context) as! Plant
         let newId = getNewId()
@@ -73,6 +72,8 @@ class CDPlantService {
         plant.name = name
         plant.descriptionPlant = description
         plant.kind = kind
+        plant.waterSchedule = waterSchedule
+        plant.nextWateringDate = nextWateringDate
         
         do {
             // Сохранять в файловую систему
@@ -153,7 +154,7 @@ class CDPlantService {
     }
     
     // MARK: Update
-    public func updatePlantWithId(_ id: Int, name: String? = nil, kind: String? = nil, description: String? = nil, images: [UIImage]? = nil) {
+    public func updatePlantWithId(_ id: Int, name: String? = nil, kind: String? = nil, description: String? = nil, images: [UIImage]? = nil, waterShedule: Int16? = nil) {
         let predicate = NSPredicate(format: "id == %@", "\(id)")
         let request = getFetchRequest(with: predicate)
         
@@ -188,6 +189,11 @@ class CDPlantService {
                 } catch {
                     print("(CoreData): Failed archived images for update")
                 }
+            }
+            
+            if let waterShedule = waterShedule {
+                plant.waterSchedule = waterShedule
+                // TODO chenge nextWateringDate
             }
             
             savePlantContext()
