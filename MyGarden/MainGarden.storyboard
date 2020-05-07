@@ -48,7 +48,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="170" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plant" translatesAutoresizingMaskIntoConstraints="NO" id="BMo-CA-ige">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-plant" translatesAutoresizingMaskIntoConstraints="NO" id="BMo-CA-ige">
                                                     <rect key="frame" x="0.0" y="0.0" width="170" height="200"/>
                                                     <color key="backgroundColor" red="0.73725490196078436" green="0.75686274509803919" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </imageView>
@@ -394,9 +394,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="iLe-8Y-CFX"/>
+        <segue reference="pX6-V4-dC9"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="plant" width="600" height="220"/>
+        <image name="default-plant" width="512" height="512"/>
     </resources>
 </document>

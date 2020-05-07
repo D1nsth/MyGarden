@@ -23,8 +23,13 @@ class AddPlantController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        registerForKeyboardNotification()
         setupNavigationBar()
         setupCollectionView()
+    }
+    
+    deinit {
+        removeKeyboardNotification()
     }
     
     override func viewWillAppear(_ animated: Bool) {
