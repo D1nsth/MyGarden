@@ -42,7 +42,7 @@ class AddPlantController: UIViewController {
         dataCollectionView.delegate = self
         
         dataCollectionView.contentInsetAdjustmentBehavior = .never
-        dataCollectionView.register(PlantImageHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: PlantImageHeaderView.reuseId)
+        dataCollectionView.register(PlantImageHeaderView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: PlantImageHeaderView.reuseId)
     }
     
     fileprivate func setupNavigationBar() {
@@ -113,7 +113,7 @@ extension AddPlantController: UICollectionViewDataSource {
             let title = (plantName.isEmpty) ? plant.kind : plantName
             
             customTitleNavLabel.text = title
-            header.setImages(plant.images, withTitle: title)
+            header.setImages(plant.images, withTitle: title, isActions: true)
         }
         
         return header
@@ -163,6 +163,16 @@ extension AddPlantController: PlantImageHeaderViewDelegate {
         } else {
             currentPlant?.images.append(image)
         }
+    }
+    
+    func deleteImageBy(_ indexImage: Int) {
+        guard let id = currentPlant?.id else {
+            print("(AddPlantController): Failed get id")
+            return
+        }
+        
+        currentPlant?.images.remove(at: indexImage)
+        plantService.updatePlantWithId(id, images: currentPlant?.images)
     }
     
 }

@@ -11,65 +11,34 @@ import UIKit
 protocol PlantImageHeaderViewDelegate: class {
     func presentView(_ view: UIViewController, animated: Bool)
     func dismissView(animated: Bool)
-    
     func addImage(_ image: UIImage)
+    func deleteImageBy(_ indexImage: Int)
 }
 
 class PlantImageHeaderView: UICollectionReusableView {
         
     static let reuseId = "PlantDetailsHeaderReuseId"
+    static let nib = UINib(nibName: String(describing: PlantImageHeaderView.self), bundle: nil)
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var collectionImageView: UICollectionView!
+    @IBOutlet weak var actionsWithImageButton: UIButton!
     
     weak var delegate: PlantImageHeaderViewDelegate?
     
     var plantImages: [UIImage] = []
-    var collectionImageView: UICollectionView?
 
-    let titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = ""
-        label.textColor = .white
-        label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 30, weight: .medium)
-        return label
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override func awakeFromNib() {
+        super.awakeFromNib()
         
         setupCollectionView()
-        setupLayout()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
  
     fileprivate func setupCollectionView() {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        
-        collectionImageView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionImageView?.showsHorizontalScrollIndicator = false
-        collectionImageView?.isPagingEnabled = true
-        collectionImageView?.backgroundColor = #colorLiteral(red: 0.737254902, green: 0.7568627451, blue: 0.6980392157, alpha: 1)
-        
-        collectionImageView?.delegate = self
-        collectionImageView?.dataSource = self
-        collectionImageView?.register(PlantImageHeaderViewCell.self, forCellWithReuseIdentifier: PlantImageHeaderViewCell.reuseId)
-    }
-    
-    fileprivate func setupLayout() {
-        addSubview(collectionImageView!)
-        collectionImageView?.anchor(top: topAnchor,
-                                    leading: leadingAnchor,
-                                    bottom: bottomAnchor,
-                                    trailing: trailingAnchor)
-        
-        addSubview(titleLabel)
-        titleLabel.anchor(leading: leadingAnchor,
-                          bottom: bottomAnchor,
-                          trailing: trailingAnchor,
-                          padding: UIEdgeInsets(top: 0, left: 16, bottom: 16, right: 16))
+        collectionImageView.delegate = self
+        collectionImageView.dataSource = self
+        collectionImageView.register(PlantImageHeaderViewCell.self, forCellWithReuseIdentifier: PlantImageHeaderViewCell.reuseId)
     }
     
     fileprivate func presentAddImageActionSheet() {
@@ -90,9 +59,25 @@ class PlantImageHeaderView: UICollectionReusableView {
             imagePicker.sourceType = .camera
             self.delegate?.presentView(imagePicker, animated: true)
         }
-        
-        let deleteImageAction = UIAlertAction(title: "Delete image", style: .default) { (action) in
-           // TODO: Delete Image
+
+        let deleteImageAction = UIAlertAction(title: "Delete image", style: .default) { [weak self] (action) in
+            let cell = self?.collectionImageView.visibleCells.first as! PlantImageHeaderViewCell
+            guard let image = cell.getImage() else {
+                print("(PlantImageHeaderView): Failed get image")
+                return
+            }
+            
+            guard let index = self?.plantImages.firstIndex(of: image) else {
+                print("(PlantImageHeaderView): Failed get index by image")
+                return
+            }
+            
+            if (index + 1 != self?.plantImages.count) {
+                self?.scrollTo(index + 1)
+            }
+            self?.plantImages.remove(at: index)
+            self?.collectionImageView.reloadData()
+            self?.delegate?.deleteImageBy(index)
         }
         
         alertController.addAction(fromGalleryAction)
@@ -103,14 +88,19 @@ class PlantImageHeaderView: UICollectionReusableView {
         delegate?.presentView(alertController, animated: true)
     }
     
-    public func setImages(_ images: [UIImage]?, withTitle title: String) {
+    public func setImages(_ images: [UIImage]?, withTitle title: String, isActions: Bool) {
+        actionsWithImageButton.alpha = (isActions) ? 1.0 : 0.0
         plantImages = images ?? []
         titleLabel.text = title
         collectionImageView?.reloadData()
     }
     
-    fileprivate func scrollToEnd() {
-        collectionImageView?.scrollToItem(at: IndexPath(item: plantImages.count - 1, section: 0), at: .right, animated: true)
+    fileprivate func scrollTo(_ index: Int) {
+        collectionImageView.scrollToItem(at: IndexPath(item: index, section: 0), at: .right, animated: true)
+    }
+    
+    @IBAction func actionsWithImageButtonTapped(_ sender: UIButton) {
+        presentAddImageActionSheet()
     }
     
 }
@@ -124,18 +114,10 @@ extension PlantImageHeaderView: UICollectionViewDelegateFlowLayout, UICollection
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PlantImageHeaderViewCell.reuseId, for: indexPath) as! PlantImageHeaderViewCell
-        if plantImages.count == 0 {
-            cell.setImage(#imageLiteral(resourceName: "default-plant"))
-            
-        } else {
-            cell.setImage(plantImages[indexPath.row])
-        }
+        let image = (plantImages.count == 0) ? #imageLiteral(resourceName: "default-plant") : plantImages[indexPath.row]
+        cell.setImage(image)
         
         return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        presentAddImageActionSheet()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -143,7 +125,7 @@ extension PlantImageHeaderView: UICollectionViewDelegateFlowLayout, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionImageView!.frame.width, height: collectionImageView!.frame.height)
+        return CGSize(width: collectionImageView.frame.width, height: collectionImageView.frame.height)
     }
     
 }
@@ -157,10 +139,10 @@ extension PlantImageHeaderView: UIImagePickerControllerDelegate, UINavigationCon
         }
         
         plantImages.append(image)
-        collectionImageView?.reloadData()
+        collectionImageView.reloadData()
         delegate?.addImage(image)
         delegate?.dismissView(animated: true)
-        scrollToEnd()
+        scrollTo(plantImages.count - 1)
     }
     
 }

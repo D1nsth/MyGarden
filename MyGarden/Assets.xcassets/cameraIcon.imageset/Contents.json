@@ -1,15 +1,17 @@
 {
   "images" : [
     {
+      "filename" : "camera@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "batman.jpg",
+      "filename" : "camera@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "camera@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -81,7 +81,7 @@ class PlantDetailsViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.contentInsetAdjustmentBehavior = .never
         
-        collectionView.register(PlantImageHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: PlantImageHeaderView.reuseId)
+        collectionView.register(PlantImageHeaderView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: PlantImageHeaderView.reuseId)
     }
     
     fileprivate func setupSectionsCell() {
@@ -146,7 +146,7 @@ extension PlantDetailsViewController: UICollectionViewDataSource {
         let title = (plantName.isEmpty) ? plant.kind : plantName
         
         customTitleNavLabel.text = title
-        header.setImages(plant.images, withTitle: title)
+        header.setImages(plant.images, withTitle: title, isActions: false)
         
         return header
     }

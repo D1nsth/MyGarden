@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PlantDetailsHeaderReuseId" id="gy6-OB-vFM" customClass="PlantImageHeaderView" customModule="MyGarden" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="430" height="314"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JNI-Rf-A4o">
+                    <rect key="frame" x="0.0" y="0.0" width="430" height="314"/>
+                    <subviews>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="kfU-nm-ao3">
+                            <rect key="frame" x="0.0" y="0.0" width="430" height="314"/>
+                            <color key="backgroundColor" red="0.73725490196078436" green="0.75686274509803919" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="HXR-1z-aJI">
+                                <size key="itemSize" width="128" height="128"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                        </collectionView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cQF-Ya-nke">
+                            <rect key="frame" x="16" y="262" width="348" height="36"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iou-2g-pVe">
+                            <rect key="frame" x="369" y="257.5" width="45" height="45"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="45" id="A1o-m3-sgY"/>
+                                <constraint firstAttribute="height" constant="45" id="LFk-v9-Wfe"/>
+                            </constraints>
+                            <state key="normal" image="cameraIcon"/>
+                            <connections>
+                                <action selector="actionsWithImageButtonTapped:" destination="gy6-OB-vFM" eventType="touchUpInside" id="bMo-hK-hzd"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="Iou-2g-pVe" secondAttribute="trailing" constant="16" id="65v-Lf-BCU"/>
+                        <constraint firstAttribute="bottom" secondItem="kfU-nm-ao3" secondAttribute="bottom" id="6UT-FM-RT1"/>
+                        <constraint firstItem="Iou-2g-pVe" firstAttribute="centerY" secondItem="cQF-Ya-nke" secondAttribute="centerY" id="Hh3-qs-BSO"/>
+                        <constraint firstItem="kfU-nm-ao3" firstAttribute="leading" secondItem="JNI-Rf-A4o" secondAttribute="leading" id="I5Z-jX-2dB"/>
+                        <constraint firstItem="kfU-nm-ao3" firstAttribute="top" secondItem="JNI-Rf-A4o" secondAttribute="top" id="N53-J9-kUg"/>
+                        <constraint firstItem="cQF-Ya-nke" firstAttribute="leading" secondItem="JNI-Rf-A4o" secondAttribute="leading" constant="16" id="fU7-Za-uJV"/>
+                        <constraint firstAttribute="trailing" secondItem="kfU-nm-ao3" secondAttribute="trailing" id="hwz-Es-7rU"/>
+                        <constraint firstAttribute="bottom" secondItem="cQF-Ya-nke" secondAttribute="bottom" constant="16" id="j2S-fI-ipn"/>
+                        <constraint firstItem="Iou-2g-pVe" firstAttribute="leading" secondItem="cQF-Ya-nke" secondAttribute="trailing" constant="5" id="jZe-Vm-PST"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="JNI-Rf-A4o" firstAttribute="top" secondItem="gy6-OB-vFM" secondAttribute="top" id="4WO-HV-mR6"/>
+                <constraint firstItem="JNI-Rf-A4o" firstAttribute="leading" secondItem="30p-90-cEx" secondAttribute="leading" id="UZ3-U5-eDw"/>
+                <constraint firstAttribute="bottom" secondItem="JNI-Rf-A4o" secondAttribute="bottom" id="u3y-ZC-HiQ"/>
+                <constraint firstItem="30p-90-cEx" firstAttribute="trailing" secondItem="JNI-Rf-A4o" secondAttribute="trailing" id="vFL-wr-qNv"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="30p-90-cEx"/>
+            <connections>
+                <outlet property="actionsWithImageButton" destination="Iou-2g-pVe" id="uzs-fF-Ppu"/>
+                <outlet property="collectionImageView" destination="kfU-nm-ao3" id="YEp-Pw-TYm"/>
+                <outlet property="titleLabel" destination="cQF-Ya-nke" id="Dq6-ig-ZDx"/>
+            </connections>
+            <point key="canvasLocation" x="-5.7971014492753632" y="109.82142857142857"/>
+        </collectionReusableView>
+    </objects>
+    <resources>
+        <image name="cameraIcon" width="421" height="421"/>
+    </resources>
+</document>

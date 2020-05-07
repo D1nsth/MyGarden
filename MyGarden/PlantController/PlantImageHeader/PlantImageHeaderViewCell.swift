@@ -12,7 +12,7 @@ class PlantImageHeaderViewCell: UICollectionViewCell {
     
     static let reuseId = "PlantDetailsHeaderCellReuseId"
     
-    let imageView: UIImageView = {
+    fileprivate let imageView: UIImageView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "default-plant"))
         imageView.layer.masksToBounds = true
         imageView.backgroundColor = #colorLiteral(red: 0.737254902, green: 0.7568627451, blue: 0.6980392157, alpha: 1)
@@ -40,6 +40,10 @@ class PlantImageHeaderViewCell: UICollectionViewCell {
     
     public func setImage(_ image: UIImage) {
         imageView.image = image
+    }
+    
+    public func getImage() -> UIImage? {
+        return imageView.image
     }
     
 }
