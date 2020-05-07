@@ -37,7 +37,11 @@ class AddPlantFooterViewCell: UICollectionReusableView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    fileprivate func setupButton() {
+    public func hideDeleteButton() {
+        deletePlantButton.alpha = 0.0
+    }
+    
+    private func setupButton() {
         addSubview(deletePlantButton)
         deletePlantButton.addTarget(self, action: #selector(deletePlantButtonTapped), for: .touchUpInside)
         deletePlantButton.anchor(top: topAnchor,
@@ -47,7 +51,7 @@ class AddPlantFooterViewCell: UICollectionReusableView {
                                  padding: Constants.mainInsets)
     }
     
-    @objc fileprivate func deletePlantButtonTapped() {
+    @objc private func deletePlantButtonTapped() {
         delegate?.deletePlant()
     }
     

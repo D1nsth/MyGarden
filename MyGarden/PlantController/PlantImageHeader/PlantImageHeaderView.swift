@@ -35,13 +35,13 @@ class PlantImageHeaderView: UICollectionReusableView {
     }
     
  
-    fileprivate func setupCollectionView() {
+    private func setupCollectionView() {
         collectionImageView.delegate = self
         collectionImageView.dataSource = self
         collectionImageView.register(PlantImageHeaderViewCell.self, forCellWithReuseIdentifier: PlantImageHeaderViewCell.reuseId)
     }
     
-    fileprivate func presentAddImageActionSheet() {
+    private func presentAddImageActionSheet() {
         // TODO: rename
         let alertController = UIAlertController(title: "Select", message: nil, preferredStyle: .actionSheet)
         
@@ -97,7 +97,7 @@ class PlantImageHeaderView: UICollectionReusableView {
         collectionImageView?.reloadData()
     }
     
-    fileprivate func scrollTo(_ index: Int) {
+    private func scrollTo(_ index: Int) {
         collectionImageView.scrollToItem(at: IndexPath(item: index, section: 0), at: .right, animated: true)
     }
     

@@ -30,13 +30,13 @@ class MainGardenHeaderView: UICollectionReusableView {
         configurateConllectionView()
     }
     
-    fileprivate func configurateCellUI() {
+    private func configurateCellUI() {
         addPlantButton.layer.cornerRadius = Constants.buttonCornerRadius
         plantsCollectionView.backgroundColor = .white
         noPlantToWaterLabel.alpha = 1.0
     }
     
-    fileprivate func configurateConllectionView() {
+    private func configurateConllectionView() {
         plantsCollectionView.register(MainGardenHeaderCollectionCell.self, forCellWithReuseIdentifier: MainGardenHeaderCollectionCell.reuseId)
         plantsCollectionView.delegate = self
         plantsCollectionView.dataSource = self

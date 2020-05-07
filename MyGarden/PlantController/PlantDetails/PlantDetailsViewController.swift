@@ -20,11 +20,11 @@ class PlantDetailsViewController: UIViewController {
     @IBOutlet weak var customTitleNavLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    fileprivate let editDetailsSegueId = "editPlantDetailsSegue"
-    fileprivate let plantService = CDPlantService()
+    private let editDetailsSegueId = "editPlantDetailsSegue"
+    private let plantService = CDPlantService()
     
-    fileprivate var isDarkStatusBar: Bool = false
-    fileprivate var sections: [SectionsDetails] = [.kind, .description, .waterSchedule]
+    private var isDarkStatusBar: Bool = false
+    private var sections: [SectionsDetails] = [.kind, .description, .waterSchedule]
     
     var currentPlant: PlantModel?
     
@@ -51,7 +51,7 @@ class PlantDetailsViewController: UIViewController {
         return (isDarkStatusBar) ? .default : .lightContent
     }
     
-    fileprivate func setupNavigationBar() {
+    private func setupNavigationBar() {
         customNavBackgroundView.alpha = 0.0
         
         if let navigationBar = navigationController?.navigationBar {
@@ -62,18 +62,20 @@ class PlantDetailsViewController: UIViewController {
         }
     }
     
-    fileprivate func updateNavigationBar() {
+    private func updateNavigationBar() {
         navigationController?.navigationBar.tintColor = .white
     }
     
-    fileprivate func setupCollectionViewLayout() {
-        // layout customization
-        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.sectionInset = Constants.mainInsets
+    private func setupCollectionViewLayout() {
+        guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout  else {
+            return
         }
+        
+        // layout customization
+        layout.sectionInset = Constants.mainInsets
     }
     
-    fileprivate func setupCollectionView() {
+    private func setupCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.contentInsetAdjustmentBehavior = .never
@@ -81,20 +83,16 @@ class PlantDetailsViewController: UIViewController {
         collectionView.register(PlantImageHeaderView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: PlantImageHeaderView.reuseId)
     }
     
-    fileprivate func setupSectionsCell() {
+    private func setupSectionsCell() {
         sections = [.kind, .description, .waterSchedule]
         
-        if let descriptionPlant = currentPlant?.description {
-            if descriptionPlant.isEmpty {
-                sections.removeAll { $0 == .description}
-            }
-            
-        } else {
-            sections.removeAll { $0 == .description}
+        guard currentPlant?.description?.isEmpty ?? true else {
+            return
         }
+        sections.removeAll { $0 == .description}
     }
     
-    fileprivate func updateCurrentPlant() {
+    private func updateCurrentPlant() {
         if let id = currentPlant?.id {
             currentPlant = plantService.getPlantById(id)
             collectionView.reloadData()

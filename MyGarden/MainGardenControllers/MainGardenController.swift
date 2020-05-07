@@ -12,12 +12,12 @@ class MainGardenController: UIViewController {
     
     @IBOutlet weak var gardenCollectionView: UICollectionView!
     
-    fileprivate let showDetailsSegueId = "showPlantDetailsSegue"
-    fileprivate let showAddPlantSegueId = "showAddNewPlantSegue"
-    fileprivate let plantService = CDPlantService()
+    private let showDetailsSegueId = "showPlantDetailsSegue"
+    private let showAddPlantSegueId = "showAddNewPlantSegue"
+    private let plantService = CDPlantService()
     
-    fileprivate var plants: [PlantModel] = []
-    fileprivate var selectPlant: Int?
+    private var plants: [PlantModel] = []
+    private var selectPlant: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +35,7 @@ class MainGardenController: UIViewController {
         updateNavigationBar()
     }
     
-    fileprivate func setupCollectionView() {
+    private func setupCollectionView() {
         gardenCollectionView.dataSource = self
         gardenCollectionView.delegate = self
         
@@ -44,7 +44,7 @@ class MainGardenController: UIViewController {
         gardenCollectionView.register(MainGardenHeaderView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MainGardenHeaderView.reuseId)
     }
     
-    fileprivate func setupCollectionLayout() {
+    private func setupCollectionLayout() {
         if let layout = gardenCollectionView.collectionViewLayout as? GardenCollectionFlowLayout {
             layout.sectionInset = .init(top: 0,
                                         left: Constants.mainInsets.left,
@@ -53,7 +53,7 @@ class MainGardenController: UIViewController {
         }
     }
     
-    fileprivate func updateNavigationBar() {
+    private func updateNavigationBar() {
         if let navigationBar = navigationController?.navigationBar {
             navigationBar.tintColor = .black
             navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.black]

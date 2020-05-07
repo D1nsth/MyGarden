@@ -81,7 +81,7 @@ class DataCollectionCell: UICollectionViewCell {
         delegate?.savePlant()
     }
     
-    fileprivate func configureWaterSchedulePicker() {
+    private func configureWaterSchedulePicker() {
         waterSchedulePickerDataSource.delegate = self
         let waterSchedulePicker = UIPickerView()
         waterSchedulePicker.dataSource = waterSchedulePickerDataSource

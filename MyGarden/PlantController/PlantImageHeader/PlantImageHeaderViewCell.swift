@@ -12,7 +12,7 @@ class PlantImageHeaderViewCell: UICollectionViewCell {
     
     static let reuseId = "PlantDetailsHeaderCellReuseId"
     
-    fileprivate let imageView: UIImageView = {
+    private let imageView: UIImageView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "default-plant"))
         imageView.layer.masksToBounds = true
         imageView.backgroundColor = #colorLiteral(red: 0.737254902, green: 0.7568627451, blue: 0.6980392157, alpha: 1)
@@ -30,7 +30,7 @@ class PlantImageHeaderViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    fileprivate func setupLayout() {
+    private func setupLayout() {
         addSubview(imageView)
         imageView.anchor(top: topAnchor,
                          leading: leadingAnchor,

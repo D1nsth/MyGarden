@@ -10,10 +10,10 @@ import UIKit
 import CoreData
 
 class CDPlantService {
-    fileprivate let entityName = "Plant"
-    fileprivate let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    private let entityName = "Plant"
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    fileprivate func getFetchRequest(with predicate: NSPredicate? = nil) -> NSFetchRequest<Plant> {
+    private func getFetchRequest(with predicate: NSPredicate? = nil) -> NSFetchRequest<Plant> {
         let fetchRequest: NSFetchRequest<Plant> = Plant.fetchRequest()
         if predicate != nil {
             fetchRequest.predicate = predicate
@@ -23,7 +23,7 @@ class CDPlantService {
     }
     
     // MARK: Transform to model
-    fileprivate func transformPlantsToPlantModels(_ plants: [Plant]) -> [PlantModel] {
+    private func transformPlantsToPlantModels(_ plants: [Plant]) -> [PlantModel] {
         var result: [PlantModel] = []
         
         for plant in plants {
@@ -34,7 +34,7 @@ class CDPlantService {
         return result
     }
     
-    fileprivate func transformPlantToPlantModel(_ plant: Plant) -> PlantModel {
+    private func transformPlantToPlantModel(_ plant: Plant) -> PlantModel {
         var images: [UIImage] = []
         // Unarchived images
         if let data = plant.images {
@@ -222,7 +222,7 @@ class CDPlantService {
     }
     
     // MARK: Save
-    fileprivate func savePlantContext() {
+    private func savePlantContext() {
         do {
             try context.save()
         } catch {

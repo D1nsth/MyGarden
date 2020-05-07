@@ -14,10 +14,10 @@ class AddPlantController: UIViewController {
     @IBOutlet weak var customNavBackgroundView: UIView!
     @IBOutlet weak var customTitleNavLabel: UILabel!
     
-    fileprivate let plantService = CDPlantService()
-    fileprivate var newImages: [UIImage] = []
+    private let plantService = CDPlantService()
+    private var newImages: [UIImage] = []
     
-    fileprivate var isDarkStatusBar: Bool = false
+    private var isDarkStatusBar: Bool = false
     var currentPlant: PlantModel?
     
     override func viewDidLoad() {
@@ -42,7 +42,7 @@ class AddPlantController: UIViewController {
         return (isDarkStatusBar) ? .default : .lightContent
     }
     
-    fileprivate func setupCollectionView() {
+    private func setupCollectionView() {
         dataCollectionView.dataSource = self
         dataCollectionView.delegate = self
         
@@ -51,7 +51,7 @@ class AddPlantController: UIViewController {
         dataCollectionView.register(PlantImageHeaderView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: PlantImageHeaderView.reuseId)
     }
     
-    fileprivate func setupNavigationBar() {
+    private func setupNavigationBar() {
         customNavBackgroundView.alpha = 0.0
         
         if let navigationBar = navigationController?.navigationBar {
@@ -62,7 +62,7 @@ class AddPlantController: UIViewController {
         }
     }
     
-    fileprivate func updateNavigationBar() {
+    private func updateNavigationBar() {
         navigationController?.navigationBar.tintColor = .white
     }
     
@@ -110,6 +110,10 @@ extension AddPlantController: UICollectionViewDataSource {
         } else {
             let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: AddPlantFooterViewCell.reuseId, for: indexPath) as! AddPlantFooterViewCell
             footer.delegate = self
+            
+            if currentPlant == nil {
+                footer.hideDeleteButton()
+            }
             
             return footer
         }
