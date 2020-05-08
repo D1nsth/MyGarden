@@ -158,10 +158,21 @@ extension PlantDetailsViewController: UICollectionViewDelegateFlowLayout {
             return .init(width: view.frame.width, height: 0)
         }
         
-        let textCell = (sections[indexPath.row] == .kind) ? plant.kind : plant.description
+        var textCell: String
+        switch sections[indexPath.row] {
+        case .kind:
+            textCell = plant.kind
+            
+        case .description:
+            textCell = plant.description ?? ""
+            
+        case .waterSchedule:
+            textCell = PlantModel.scheduleWaterData[indexPath.row - 1]
+        }
+
         let widthText = view.frame.width - Constants.mainInsets.left - Constants.mainInsets.right
-        let height = textCell?.height(width: widthText,
-                                      font: Constants.descriptionFont) ?? 0
+        let height = textCell.height(width: widthText,
+                                     font: Constants.descriptionFont)
         //                                       bottomAnchor + topAnchor + heightTitleLabel
         return .init(width: view.frame.width, height: height + 10 + 10 + 20)
     }
